@@ -411,3 +411,4 @@ Resource.designer.cs
 
 secrets.json
 secrets.*.json
+/LodFinals.Api/aws-beanstalk-tools-defaults.json
