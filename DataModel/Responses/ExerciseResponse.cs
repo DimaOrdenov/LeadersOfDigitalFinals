@@ -1,12 +1,11 @@
 ﻿using DataModel.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace LodFinals.Api.Models
+namespace DataModel.Responses
 {
-    public class Exercise
+    public class ExerciseResponse
     {
         public int Id { get; set; }
 
@@ -21,9 +20,5 @@ namespace LodFinals.Api.Models
         public string Keywords { get; set; }
 
         public uint Order { get; set; }
-
-        public int SyllabusId { get; set; }
-
-        public Syllabus Syllabus { get; set; }
     }
 }

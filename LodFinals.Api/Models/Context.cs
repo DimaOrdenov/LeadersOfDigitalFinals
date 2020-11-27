@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LodFinals.Api.Models;
 
 namespace LodFinals.Api.Models
 {
@@ -13,5 +14,7 @@ namespace LodFinals.Api.Models
         }
 
         public DbSet<Exercise> Exercises { get; set; }
+
+        public DbSet<Syllabus> Syllabus { get; set; }
     }
 }

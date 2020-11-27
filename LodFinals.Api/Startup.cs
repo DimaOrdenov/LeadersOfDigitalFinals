@@ -1,3 +1,4 @@
+using AutoMapper;
 using LodFinals.Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,7 @@ namespace LodFinals.Api
 
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
