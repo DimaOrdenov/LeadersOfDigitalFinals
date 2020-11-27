@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
+using LodFinals.Containers;
+using LodFinals.iOS.DependencyServices;
 using UIKit;
 
 namespace LodFinals.iOS
@@ -22,10 +20,36 @@ namespace LodFinals.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Rg.Plugins.Popup.Popup.Init();
+
             global::Xamarin.Forms.Forms.Init();
+
+            IocInitializer.Init(
+                new PlatformAlertMessageService(),
+                new PlatformSpeechToTextService());
+
+            // Init nugets
+            XamEffects.iOS.Effects.Init();
+
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
+            Hackiftekhar.IQKeyboardManager.Xamarin.IQKeyboardManager.SharedManager().Enable = true;
+
+            PanCardView.iOS.CardsViewRenderer.Preserve();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            if (Xamarin.Essentials.Platform.OpenUrl(app, url, options))
+            {
+                return true;
+            }
+
+            return base.OpenUrl(app, url, options);
         }
     }
 }

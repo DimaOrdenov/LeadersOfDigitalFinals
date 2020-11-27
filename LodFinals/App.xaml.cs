@@ -1,6 +1,9 @@
 ﻿using System;
+using Autofac;
+using LodFinals.Containers;
+using LodFinals.Views;
+using NoTryCatch.Xamarin.Portable.Services;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace LodFinals
 {
@@ -10,11 +13,14 @@ namespace LodFinals
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ContentPage();
         }
 
         protected override void OnStart()
         {
+            INavigationService navigationService = IocInitializer.Container.Resolve<INavigationService>();
+
+            navigationService.SetRootPage<MainPage>();
         }
 
         protected override void OnSleep()
