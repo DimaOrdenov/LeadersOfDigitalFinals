@@ -40,5 +40,9 @@
 	<array>
 		<string>fetch</string>
 	</array>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Приложению необходим доступ для записи вашей речи</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Приложению необходим доступ к микрофону</string>
 </dict>
 </plist>

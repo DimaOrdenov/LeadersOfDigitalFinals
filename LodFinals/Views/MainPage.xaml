@@ -4,8 +4,22 @@
                          x:Class="LodFinals.Views.MainPage"
                          xmlns:ntviewcontrols="clr-namespace:NoTryCatch.Xamarin.Portable.ViewControls;assembly=NoTryCatch.Xamarin.Portable">
 
-    <Label VerticalOptions="CenterAndExpand"
-           HorizontalOptions="CenterAndExpand"
-           Text="{Binding HelloWorld}" />
+    <StackLayout VerticalOptions="CenterAndExpand"
+                 HorizontalOptions="FillAndExpand"
+                 Spacing="16"
+                 Padding="32">
+
+        <Entry x:Name="translateEntry" />
+
+        <Label Text="{Binding TranslatedText}" />
+
+        <Button Text="Translate"
+                Command="{Binding TranslateTextCommand}"
+                CommandParameter="{Binding Source={x:Reference translateEntry}, Path=Text}" />
+
+        <Button Text="Record"
+                Command="{Binding RecordCommand}" />
+
+    </StackLayout>
 
 </ntviewcontrols:BasePage>

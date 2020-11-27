@@ -5,6 +5,7 @@ using Android.OS;
 using LodFinals.Containers;
 using LodFinals.Droid.DependencyServices;
 using Plugin.CurrentActivity;
+using NoTryCatch.Core.Services;
 
 namespace LodFinals.Droid
 {
@@ -47,7 +48,7 @@ namespace LodFinals.Droid
 
             IocInitializer.Init(
                 new PlatformAlertMessageService(),
-                new PlatformSpeechToTextService());
+                new PlatformSpeechToTextService(new DebuggerService()));
 
             // Init nugets
             XamEffects.Droid.Effects.Init();

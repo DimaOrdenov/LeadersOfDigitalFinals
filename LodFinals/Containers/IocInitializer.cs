@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Reflection;
 using Autofac;
+using Google.Cloud.Translation.V2;
+using LodFinals.BusinessLayer;
 using LodFinals.DependencyServices;
 using LodFinals.Helpers;
 using LodFinals.Services;
@@ -40,9 +42,11 @@ namespace LodFinals.Containers
 
             // BL
             builder.RegisterInstance<IRestClient>(new RestClient(Secrets.ApiUrl));
+            builder.RegisterInstance(TranslationClient.CreateFromApiKey(Secrets.GoogleApiCloudTranslationKey));
+
+            builder.RegisterType<GoogleCloudTranslationLogic>().As<IGoogleCloudTranslationLogic>().SingleInstance();
 
             // ViewModels
-            //builder.RegisterType<MainPViewModel>().AsSelf();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(t => t.FullName.Contains(nameof(ViewModels)))
                 .OnActivated(e =>
