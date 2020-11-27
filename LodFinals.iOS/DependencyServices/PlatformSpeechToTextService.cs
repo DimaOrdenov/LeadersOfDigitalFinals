@@ -2,24 +2,28 @@
 using AVFoundation;
 using Foundation;
 using LodFinals.DependencyServices;
+using NoTryCatch.Core.Services;
 using Speech;
 
 namespace LodFinals.iOS.DependencyServices
 {
     public class PlatformSpeechToTextService : IPlatformSpeechToTextService
     {
+        private readonly IDebuggerService _debuggerService;
+
         private readonly AVAudioEngine _audioEngine;
         private readonly SFSpeechRecognizer _speechRecognizer;
         private SFSpeechAudioBufferRecognitionRequest _recognitionRequest;
         private SFSpeechRecognitionTask _recognitionTask;
+        private AVAudioSession _aVAudioSession;
         private string _recognizedString;
-        private NSTimer _timer;
-        private bool isNotContinious;
 
         public event EventHandler<string> SpeechRecognitionFinished;
 
-        public PlatformSpeechToTextService()
+        public PlatformSpeechToTextService(IDebuggerService debuggerService)
         {
+            _debuggerService = debuggerService;
+
             _audioEngine = new AVAudioEngine();
             _speechRecognizer = new SFSpeechRecognizer();
         }
@@ -34,28 +38,30 @@ namespace LodFinals.iOS.DependencyServices
             StartRecordingAndRecognizing();
         }
 
+        public void StopSpeechToText()
+        {
+            if (_audioEngine.Running)
+            {
+                StopRecordingAndRecognition();
+            }
+        }
+
         private void StartRecordingAndRecognizing()
         {
-            _timer = NSTimer.CreateRepeatingScheduledTimer(5, delegate
-            {
-                DidFinishTalk();
-            });
-
             _recognitionTask?.Cancel();
             _recognitionTask = null;
 
-            var audioSession = AVAudioSession.SharedInstance();
+            _aVAudioSession = AVAudioSession.SharedInstance();
             NSError nsError;
 
-            nsError = audioSession.SetCategory(AVAudioSessionCategory.PlayAndRecord);
+            nsError = _aVAudioSession.SetCategory(AVAudioSessionCategory.Record, AVAudioSessionCategoryOptions.DuckOthers);
 
-            audioSession.SetMode(AVAudioSession.ModeDefault, out nsError);
+            _aVAudioSession.SetMode(AVAudioSession.ModeSpokenAudio, out nsError);
 
-            nsError = audioSession.SetActive(true, AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation);
-
-            audioSession.OverrideOutputAudioPort(AVAudioSessionPortOverride.Speaker, out nsError);
+            nsError = _aVAudioSession.SetActive(true, AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation);
 
             _recognitionRequest = new SFSpeechAudioBufferRecognitionRequest();
+            _recognitionRequest.ShouldReportPartialResults = true;
 
             var inputNode = _audioEngine.InputNode;
 
@@ -85,47 +91,32 @@ namespace LodFinals.iOS.DependencyServices
                         _recognizedString = result.BestTranscription.FormattedString;
 
                         SpeechRecognitionFinished?.Invoke(this, _recognizedString);
-
-                        _timer.Invalidate();
-                        _timer = null;
-                        _timer = NSTimer.CreateRepeatingScheduledTimer(
-                            2,
-                            delegate
-                            {
-                                DidFinishTalk();
-                            });
                     }
 
-                    if (error != null &&
-                        _audioEngine.Running)
+                    if (error != null)
                     {
-                        StopRecordingAndRecognition();
+                        _debuggerService.Log(error.LocalizedDescription);
+
+                        return;
                     }
                 });
         }
 
         private void StopRecordingAndRecognition()
         {
-            _audioEngine.Stop();
-            _audioEngine.InputNode.RemoveTapOnBus(0);
-            _recognitionTask?.Cancel();
+            SpeechRecognitionFinished?.Invoke(this, _recognizedString);
+
             _recognitionRequest.EndAudio();
             _recognitionRequest = null;
+
+            _audioEngine.Stop();
+            _audioEngine.InputNode.RemoveTapOnBus(0);
+
+            _recognitionTask?.Cancel();
             _recognitionTask = null;
-        }
 
-        private void DidFinishTalk()
-        {
-            if (_timer != null)
-            {
-                _timer.Invalidate();
-                _timer = null;
-            }
-
-            if (_audioEngine.Running)
-            {
-                StopRecordingAndRecognition();
-            }
+            _aVAudioSession.SetActive(false);
+            _aVAudioSession = null;
         }
     }
 }

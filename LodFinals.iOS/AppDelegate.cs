@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using LodFinals.Containers;
 using LodFinals.iOS.DependencyServices;
+using NoTryCatch.Core.Services;
 using UIKit;
 
 namespace LodFinals.iOS
@@ -26,7 +27,7 @@ namespace LodFinals.iOS
 
             IocInitializer.Init(
                 new PlatformAlertMessageService(),
-                new PlatformSpeechToTextService());
+                new PlatformSpeechToTextService(new DebuggerService()));
 
             // Init nugets
             XamEffects.iOS.Effects.Init();

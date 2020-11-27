@@ -22,6 +22,7 @@ namespace LodFinals.ViewModels
         private readonly IPlatformSpeechToTextService _platformSpeechToTextService;
 
         private string _translatedText;
+        private bool _isRecording;
 
         public ICommand TranslateTextCommand { get; }
 
@@ -57,18 +58,30 @@ namespace LodFinals.ViewModels
             RecordCommand = BuildPageVmCommand(
                 async () =>
                 {
-                    if (!(await CrossPermissionsExtension.CheckAndRequestPermissionIfNeeded(new Permissions.BasePermission[]
-                        {
+                    if (_isRecording)
+                    {
+                        _platformSpeechToTextService.StopSpeechToText();
+
+                        _isRecording = false;
+                    }
+                    else
+                    {
+
+                        if (!(await CrossPermissionsExtension.CheckAndRequestPermissionIfNeeded(new Permissions.BasePermission[]
+                            {
                             new Permissions.Microphone(),
                             new Permissions.Speech(),
-                        })).All(x => x.Value == PermissionStatus.Granted))
-                    {
-                        DialogService.ShowPlatformShortAlert("Не хватает разрешений на использование микрофона и записи речи");
+                            })).All(x => x.Value == PermissionStatus.Granted))
+                        {
+                            DialogService.ShowPlatformShortAlert("Не хватает разрешений на использование микрофона и записи речи");
 
-                        return;
+                            return;
+                        }
+
+                        _platformSpeechToTextService.StartSpeechToText();
+
+                        _isRecording = true;
                     }
-
-                    _platformSpeechToTextService.StartSpeechToText();
                 });
 
             _platformSpeechToTextService.SpeechRecognitionFinished += (sender, result) => TranslatedText = result;

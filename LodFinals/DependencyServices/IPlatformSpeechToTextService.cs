@@ -6,5 +6,7 @@ namespace LodFinals.DependencyServices
         event EventHandler<string> SpeechRecognitionFinished;
 
         void StartSpeechToText();
+
+        void StopSpeechToText();
     }
 }
