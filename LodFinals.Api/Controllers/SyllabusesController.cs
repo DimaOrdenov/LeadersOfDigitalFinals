@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using LodFinals.Api.Models;
 using AutoMapper;
 using DataModel.Responses;
+using DataModel.Requests;
 
 namespace LodFinals.Api.Controllers
 {
@@ -49,8 +50,9 @@ namespace LodFinals.Api.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSyllabus(int id, Syllabus syllabus)
+        public async Task<IActionResult> PutSyllabus(int id, SyllabusRequest request)
         {
+            var syllabus = _mapper.Map<Syllabus>(request);
             if (id != syllabus.Id)
             {
                 return BadRequest();
@@ -81,8 +83,9 @@ namespace LodFinals.Api.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<SyllabusResponse>> PostSyllabus(Syllabus syllabus)
+        public async Task<ActionResult<SyllabusResponse>> PostSyllabus(SyllabusRequest request)
         {
+            var syllabus = _mapper.Map<Syllabus>(request);
             _context.Syllabus.Add(syllabus);
             await _context.SaveChangesAsync();
 

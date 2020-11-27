@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using LodFinals.Api.Models;
 using AutoMapper;
 using DataModel.Responses;
+using DataModel.Requests;
 
 namespace LodFinals.Api.Controllers
 {
@@ -49,8 +50,9 @@ namespace LodFinals.Api.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutExercise(int id, Exercise exercise)
+        public async Task<IActionResult> PutExercise(int id, ExerciseRequest request)
         {
+            var exercise = _mapper.Map<Exercise>(request);
             if (id != exercise.Id)
             {
                 return BadRequest();
@@ -81,8 +83,9 @@ namespace LodFinals.Api.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ExerciseResponse>> PostExercise(Exercise exercise)
+        public async Task<ActionResult<ExerciseResponse>> PostExercise(ExerciseRequest request)
         {
+            var exercise = _mapper.Map<Exercise>(request);
             _context.Exercises.Add(exercise);
             await _context.SaveChangesAsync();
 
