@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
 
@@ -11,7 +11,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="NoTryCatch.Xamarin.Portable" Version="1.0.0" />
+    <PackageReference Include="NoTryCatch.Bl.Core" Version="1.0.0" />
+    <PackageReference Include="Resizetizer.NT" Version="0.2.1-ntc" />
+    <PackageReference Include="Autofac" Version="6.0.0" />
+    <PackageReference Include="Mobile.BuildTools" Version="1.4.0.638">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.1.0.714" />
+    <PackageReference Include="CardsView" Version="2.6.4" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="secrets.json">
+      <IncludeInPackage>false</IncludeInPackage>
+    </None>
+  </ItemGroup>
+  
 </Project>

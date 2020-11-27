@@ -403,3 +403,11 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+# mono
+mono_crash.*
+
+Resource.designer.cs
+
+secrets.json
+secrets.*.json
