@@ -1,11 +1,11 @@
-﻿using System.IO;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using LodFinals.Definitions.Responses;
 
 namespace LodFinals.BusinessLayer
 {
     public interface IGoogleCloudTextToSpeechLogic
     {
-        Task<FileStream> TextToSpeechAsync(string text, CancellationToken token);
+        Task<GoogleCloudTextToSpeechResponse> TextToSpeechAsync(string text, CancellationToken token);
     }
 }

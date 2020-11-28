@@ -107,7 +107,11 @@ namespace LodFinals.ViewModels
 
                     State = PageStateType.MinorLoading;
 
-                    using FileStream stream = await _googleCloudTextToSpeechLogic.TextToSpeechAsync(textToRead, CancellationToken);
+                    var googleResponse = await _googleCloudTextToSpeechLogic.TextToSpeechAsync(textToRead, CancellationToken);
+
+                    await File.WriteAllBytesAsync(
+                        Path.Combine(platformFileManagerService.DownloadDirectory, "sample.mp3"),
+                        Convert.FromBase64String(googleResponse.AudioContent));
 
                     await platformAudioPlayerService.Play(Path.Combine(platformFileManagerService.DownloadDirectory, "sample.mp3"));
 
