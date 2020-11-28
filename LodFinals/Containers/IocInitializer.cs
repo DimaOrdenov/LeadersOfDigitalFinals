@@ -46,8 +46,7 @@ namespace LodFinals.Containers
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
             builder.RegisterType<DebuggerService>().As<IDebuggerService>().SingleInstance();
             builder.RegisterType<ExceptionHandler>().As<IExceptionHandler>().SingleInstance();
-            builder.RegisterType<UserContext>().AsSelf().SingleInstance();
-            builder.RegisterType<SpeechToTextService>().As<ISpeechToTextService>().SingleInstance();
+            builder.RegisterType<ExtendedUserContext>().As<UserContext>().AsSelf().SingleInstance();
             builder.RegisterType<LexService>().As<ILexService>().SingleInstance();
 
             var lexClient = new AmazonLexClient(Secrets.LexKeyId, Secrets.LexAccessKey, region: RegionEndpoint.EUCentral1);
@@ -67,7 +66,10 @@ namespace LodFinals.Containers
 
             builder.RegisterType<GoogleCloudTranslationLogic>().As<IGoogleCloudTranslationLogic>().SingleInstance();
             builder
-                .Register(context => new GoogleCloudTextToSpeechLogic(googleTextToSpeechClient, context.Resolve<UserContext>(), context.Resolve<IDebuggerService>()))
+                .Register(context => new GoogleCloudTextToSpeechLogic(
+                    googleTextToSpeechClient,
+                    context.Resolve<ExtendedUserContext>(),
+                    context.Resolve<IDebuggerService>()))
                 .As<IGoogleCloudTextToSpeechLogic>()
                 .SingleInstance();
 
@@ -112,6 +114,7 @@ namespace LodFinals.Containers
             pageFactory.Configure<MainPage, MainPViewModel>(() => Container.Resolve<MainPViewModel>());
             pageFactory.Configure<ExercisesPage, ExercisesViewModel>(() => Container.Resolve<ExercisesViewModel>());
             pageFactory.Configure<ProfilePage, ProfileViewModel>(() => Container.Resolve<ProfileViewModel>());
+            pageFactory.Configure<AccentSettingPage, AccentSettingViewModel>(() => Container.Resolve<AccentSettingViewModel>());
         }
     }
 }

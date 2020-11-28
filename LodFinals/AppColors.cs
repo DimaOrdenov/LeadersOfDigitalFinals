@@ -16,6 +16,8 @@ namespace LodFinals
 
         public static Color PaleGray => Color.FromHex("#F3F3F3");
 
+        public static Color Green => Color.FromHex("#00AC4D");
+
         public static Color RippleEffectWhite => Color.FromHex("#52FFFFFF");
 
         public static Color RippleEffectBlack => Color.FromHex("#52000000");

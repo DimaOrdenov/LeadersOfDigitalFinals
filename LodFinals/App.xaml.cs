@@ -1,8 +1,7 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
+using LodFinals.BusinessLayer;
 using LodFinals.Containers;
 using LodFinals.Views;
-using LodFinals.Views.Exercises;
 using NoTryCatch.Xamarin.Portable.Services;
 using Xamarin.Forms;
 
@@ -20,8 +19,8 @@ namespace LodFinals
         protected override void OnStart()
         {
             INavigationService navigationService = IocInitializer.Container.Resolve<INavigationService>();
-
-            navigationService.SetRootTabbedPage<MainTabbedPage>(0);
+            IocInitializer.Container.Resolve<ExtendedUserContext>().TryRestore()
+                .ContinueWith(t => navigationService.SetRootTabbedPage<MainTabbedPage>(0));
         }
 
         protected override void OnSleep()

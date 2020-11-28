@@ -21,11 +21,11 @@
                 </OnPlatform>
             </StackLayout.Padding>
 
-            <ffimageSvg:SvgCachedImage Source="{x:Static local:AppImages.IcFlagUk}"
+            <ffimageSvg:SvgCachedImage Source="{Binding AccentFlag}"
                                        WidthRequest="32"
                                        HeightRequest="32" />
 
-            <Label Text="Британский"
+            <Label Text="{Binding Accent}"
                    FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
                    Margin="8,0,0,0"
                    VerticalOptions="Center"
@@ -39,12 +39,6 @@
                    FontFamily="{x:Static local:AppFontFamilies.Bold}"
                    VerticalOptions="Center"
                    Margin="8,0,0,0" />
-
-            <Frame CornerRadius="16"
-                   WidthRequest="32"
-                   HeightRequest="32"
-                   Margin="24,0,0,0"
-                   BackgroundColor="{x:Static local:AppColors.Orange}" />
 
         </StackLayout>
     </NavigationPage.TitleView>

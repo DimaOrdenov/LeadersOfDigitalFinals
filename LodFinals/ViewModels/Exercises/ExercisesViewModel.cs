@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using LodFinals.BusinessLayer;
 using LodFinals.ViewModels.Common;
 using NoTryCatch.Core.Services;
 using NoTryCatch.Xamarin.Portable.Services;
-using NoTryCatch.Xamarin.Portable.ViewModels;
 
 namespace LodFinals.ViewModels.Exercises
 {
-    public class ExercisesViewModel : PageViewModel
+    public class ExercisesViewModel : AccentInfoViewModel
     {
         private readonly ICommand _exerciseItemTapCommand;
 
@@ -19,8 +18,9 @@ namespace LodFinals.ViewModels.Exercises
                 INavigationService navigationService,
                 IDialogService dialogService,
                 IDebuggerService debuggerService,
-                IExceptionHandler exceptionHandler)
-                : base(navigationService, dialogService, debuggerService, exceptionHandler)
+                IExceptionHandler exceptionHandler,
+                ExtendedUserContext userContext)
+                : base(navigationService, dialogService, debuggerService, exceptionHandler, userContext)
         {
             ExercisesCollection = new ObservableCollection<ExerciseItemViewModel>
             {

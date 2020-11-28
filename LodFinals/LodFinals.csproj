@@ -43,6 +43,8 @@
     <Folder Include="ViewModels\Common\" />
     <Folder Include="ViewModels\Profile\" />
     <Folder Include="Views\Profile\" />
+    <Folder Include="Definitions\Enums\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
