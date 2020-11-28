@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Amazon;
+using Amazon.Lex;
 using Autofac;
 using Google.Apis.Services;
 using Google.Cloud.Translation.V2;
@@ -45,6 +47,10 @@ namespace LodFinals.Containers
             builder.RegisterType<ExceptionHandler>().As<IExceptionHandler>().SingleInstance();
             builder.RegisterType<UserContext>().AsSelf().SingleInstance();
             builder.RegisterType<SpeechToTextService>().As<ISpeechToTextService>().SingleInstance();
+            builder.RegisterType<LexService>().As<ILexService>().SingleInstance();
+
+            var lexClient = new AmazonLexClient(Secrets.LexKeyId,Secrets.LexAccessKey,region:RegionEndpoint.EUCentral1);
+            builder.RegisterInstance(lexClient).SingleInstance();
 
             builder.RegisterInstance(platformAlertMessageServiceImplementation).As<IPlatformAlertMessageService>().SingleInstance();
             builder.RegisterInstance(platformSpeechToTextService).As<IPlatformSpeechToTextService>().SingleInstance();
