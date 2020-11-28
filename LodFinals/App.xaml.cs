@@ -4,6 +4,7 @@ using LodFinals.BusinessLayer;
 using LodFinals.Containers;
 using LodFinals.Services;
 using LodFinals.Views;
+using LodFinals.Views.OnBoarding;
 using NoTryCatch.Xamarin.Portable.Services;
 using Xamarin.Forms;
 
@@ -21,12 +22,21 @@ namespace LodFinals
         protected override void OnStart()
         {
             INavigationService navigationService = IocInitializer.Container.Resolve<INavigationService>();
+            ExtendedUserContext userContext = IocInitializer.Container.Resolve<ExtendedUserContext>();
 
             IocInitializer.Container.Resolve<ILexService>()
                 .SetUser(Guid.NewGuid().ToString());
 
-            IocInitializer.Container.Resolve<ExtendedUserContext>().TryRestore()
-                .ContinueWith(t => navigationService.SetRootTabbedPage<MainTabbedPage>(0));
+            userContext.TryRestore();
+
+            if (userContext.IsFirstLaunch)
+            {
+                navigationService.SetRootPage<OnBoardingPage>();
+            }
+            else
+            {
+                navigationService.SetRootTabbedPage<MainTabbedPage>(0);
+            }
         }
 
         protected override void OnSleep()

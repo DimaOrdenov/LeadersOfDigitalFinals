@@ -7,12 +7,17 @@ namespace LodFinals.BusinessLayer
     public class ExtendedUserContext : UserContext
     {
         public const string CHOSEN_ACCENT = "ChosenAccent";
+        public const string FIRST_LAUNCH = "FirstLaunch";
+        public const string USER_NAME = "UserName";
 
         private string _settingAccent;
+        private bool _isFirstLaunch;
+        private string _name;
 
         public ExtendedUserContext()
         {
             SettingAccent = "en-US";
+            _isFirstLaunch = true;
         }
 
         public event EventHandler UserContextChanged;
@@ -28,18 +33,26 @@ namespace LodFinals.BusinessLayer
             }
         }
 
-        public async Task TryRestore()
+        public bool IsFirstLaunch => _isFirstLaunch;
+
+        public string Name => _name;
+
+        public void TryRestore()
         {
             if (App.Current.Properties.ContainsKey(CHOSEN_ACCENT))
             {
                 SettingAccent = App.Current.Properties[CHOSEN_ACCENT] as string;
             }
-            else
+
+            if (App.Current.Properties.ContainsKey(FIRST_LAUNCH))
             {
-                App.Current.Properties.Add(CHOSEN_ACCENT, _settingAccent);
+                _isFirstLaunch = App.Current.Properties[FIRST_LAUNCH] as bool? == true;
             }
 
-            await App.Current.SavePropertiesAsync();
+            if (App.Current.Properties.ContainsKey(USER_NAME))
+            {
+                _name = App.Current.Properties[USER_NAME] as string;
+            }
         }
 
         public async Task SetAccent(string accent)
@@ -56,6 +69,38 @@ namespace LodFinals.BusinessLayer
             await App.Current.SavePropertiesAsync();
 
             SettingAccent = accent;
+        }
+
+        public async Task SetFirstLaunchCompleted()
+        {
+            if (App.Current.Properties.ContainsKey(FIRST_LAUNCH))
+            {
+                App.Current.Properties[FIRST_LAUNCH] = false;
+            }
+            else
+            {
+                App.Current.Properties.Add(FIRST_LAUNCH, false);
+            }
+
+            await App.Current.SavePropertiesAsync();
+
+            _isFirstLaunch = false;
+        }
+
+        public async Task SetName(string name)
+        {
+            if (App.Current.Properties.ContainsKey(USER_NAME))
+            {
+                App.Current.Properties[USER_NAME] = name;
+            }
+            else
+            {
+                App.Current.Properties.Add(USER_NAME, name);
+            }
+
+            await App.Current.SavePropertiesAsync();
+
+            _name = name;
         }
     }
 }

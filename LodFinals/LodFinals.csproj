@@ -51,6 +51,8 @@
     <Folder Include="ViewModels\Rating\" />
     <Folder Include="Views\Rating\" />
     <Folder Include="Views\Common\" />
+    <Folder Include="ViewModels\OnBoarding\" />
+    <Folder Include="Views\OnBoarding\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -75,6 +75,7 @@
     <Compile Include="DependencyServices\PlatformAudioPlayerService.cs" />
     <Compile Include="DependencyServices\PlatformFileManagerService.cs" />
     <Compile Include="CustomRenderers\BaseProgressBarRenderer.cs" />
+    <Compile Include="CustomRenderers\BaseEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

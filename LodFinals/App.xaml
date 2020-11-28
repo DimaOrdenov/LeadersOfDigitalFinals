@@ -57,7 +57,12 @@
                    ApplyToDerivedTypes="True" />
 
             <Style TargetType="Entry"
-                   ApplyToDerivedTypes="True" />
+                   ApplyToDerivedTypes="True">
+                <Setter Property="FontFamily"
+                        Value="{x:Static local:AppFontFamilies.SemiBold}" />
+                <Setter Property="FontSize"
+                        Value="18" />
+            </Style>
 
             <Style TargetType="Button"
                    ApplyToDerivedTypes="True">

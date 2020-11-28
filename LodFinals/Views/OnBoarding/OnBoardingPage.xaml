@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ntcviewcontrols:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="LodFinals.Views.OnBoarding.OnBoardingPage"
+                          xmlns:local="clr-namespace:LodFinals"
+                          xmlns:viewcontrols="clr-namespace:LodFinals.ViewControls"
+                          xmlns:commonViews="clr-namespace:LodFinals.Views.Common"
+                          xmlns:ntcviewcontrols="clr-namespace:NoTryCatch.Xamarin.Portable.ViewControls;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ntcConverters="clr-namespace:NoTryCatch.Xamarin.Portable.Converters;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ffimageSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                          xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                          NavigationPage.HasNavigationBar="False">
+
+    <viewcontrols:BaseLayout>
+        <viewcontrols:BaseLayout.Content>
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand"
+                             Padding="16,116,16,40"
+                             BackgroundColor="{x:Static local:AppColors.Main}">
+
+                    <Grid VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout>
+
+                            <Label Text="{Binding Header}"
+                                   FontSize="48"
+                                   FontFamily="{x:Static local:AppFontFamilies.Bold}" />
+
+                            <Label Text="{Binding Description}"
+                                   Margin="0,16,0,0" />
+
+                            <Frame CornerRadius="16"
+                                   BackgroundColor="{x:Static local:AppColors.PaleGray}"
+                                   VerticalOptions="EndAndExpand"
+                                   Padding="16,8"
+                                   IsVisible="{Binding IsEntryVisible}">
+
+                                <Entry Text="{Binding EntryText}"
+                                       TextColor="{x:Static local:AppColors.Navy}"
+                                       Keyboard="{Binding EntryKeyboard}"
+                                       IsPassword="{Binding EntryIsPassword}" />
+
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1">
+
+                            <Button Text="{Binding NextButtonText, Mode=TwoWay}"
+                                    BackgroundColor="{Binding NextButtonBackgroundColor}"
+                                    Command="{Binding NextStepCommand}"
+                                    VerticalOptions="EndAndExpand" />
+
+                        </StackLayout>
+
+                    </Grid>
+
+                </StackLayout>
+            </ScrollView>
+        </viewcontrols:BaseLayout.Content>
+    </viewcontrols:BaseLayout>
+</ntcviewcontrols:BasePage>

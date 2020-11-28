@@ -15,11 +15,13 @@ using LodFinals.Services;
 using LodFinals.ViewModels;
 using LodFinals.ViewModels.Chat;
 using LodFinals.ViewModels.Exercises;
+using LodFinals.ViewModels.OnBoarding;
 using LodFinals.ViewModels.Profile;
 using LodFinals.ViewModels.Rating;
 using LodFinals.Views;
 using LodFinals.Views.Chat;
 using LodFinals.Views.Exercises;
+using LodFinals.Views.OnBoarding;
 using LodFinals.Views.Profile;
 using LodFinals.Views.Rating;
 using NoTryCatch.BL.Core;
@@ -136,6 +138,7 @@ namespace LodFinals.Containers
             pageFactory.Configure<ExerciseDetailsPage, ExerciseDetailsViewModel>(() => Container.Resolve<ExerciseDetailsViewModel>());
             pageFactory.Configure<TaskOnePage, TaskBaseViewModel>(() => Container.Resolve<TaskBaseViewModel>());
             pageFactory.Configure<TaskCompletionPage, TaskCompletionViewModel>(() => Container.Resolve<TaskCompletionViewModel>());
+            pageFactory.Configure<OnBoardingPage, OnBoardingViewModel>(() => Container.Resolve<OnBoardingViewModel>());
         }
     }
 }

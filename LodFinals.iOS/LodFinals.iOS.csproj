@@ -73,6 +73,7 @@
     <Compile Include="DependencyServices\PlatformFileManagerService.cs" />
     <Compile Include="DependencyServices\PlatformAudioPlayerService.cs" />
     <Compile Include="CustomRenderer\BaseProgressBarRenderer.cs" />
+    <Compile Include="CustomRenderer\BaseEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
