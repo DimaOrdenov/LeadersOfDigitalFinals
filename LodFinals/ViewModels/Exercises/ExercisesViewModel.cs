@@ -29,7 +29,7 @@ namespace LodFinals.ViewModels.Exercises
                 {
                     State = PageStateType.MinorLoading;
 
-                    await NavigationService.NavigateAsync<ExerciseDetailsPage>();
+                    await NavigationService.NavigateAsync<ExerciseDetailsPage>(true);
 
                     State = PageStateType.Default;
                 });

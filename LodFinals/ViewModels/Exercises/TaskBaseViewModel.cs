@@ -8,6 +8,7 @@ using System.Xml.Schema;
 using LodFinals.BusinessLayer;
 using LodFinals.DependencyServices;
 using LodFinals.Services;
+using LodFinals.Views.Exercises;
 using NoTryCatch.Core.Services;
 using NoTryCatch.Xamarin.Definitions;
 using NoTryCatch.Xamarin.Portable.Definitions.Enums;
@@ -146,9 +147,10 @@ namespace LodFinals.ViewModels.Exercises
                 {
                     if (_taskNumber == 4)
                     {
-                        await DialogService.DisplayAlert(string.Empty, "Это всё", "Ок");
+                        await NavigationService.NavigateBackAsync(false);
+                        await NavigationService.NavigateBackAsync(false);
 
-                        await NavigationService.NavigateBackAsync();
+                        await NavigationService.NavigateAsync<TaskCompletionPage>(true);
 
                         return;
                     }

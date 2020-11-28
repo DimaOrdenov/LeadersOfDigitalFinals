@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ntcviewcontrols:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="LodFinals.Views.Exercises.TaskCompletionPage"
+                          xmlns:local="clr-namespace:LodFinals"
+                          xmlns:viewcontrols="clr-namespace:LodFinals.ViewControls"
+                          xmlns:commonViews="clr-namespace:LodFinals.Views.Common"
+                          xmlns:ntcviewcontrols="clr-namespace:NoTryCatch.Xamarin.Portable.ViewControls;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ntcConverters="clr-namespace:NoTryCatch.Xamarin.Portable.Converters;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ffimageSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                          xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                          NavigationPage.HasNavigationBar="False">
+
+    <viewcontrols:BaseLayout>
+        <viewcontrols:BaseLayout.Content>
+
+            <StackLayout BackgroundColor="{x:Static local:AppColors.Main}">
+
+                <StackLayout Orientation="Horizontal"
+                             Padding="16,24,16,0"
+                             VerticalOptions="Center">
+
+                    <ContentView xameff:Commands.Tap="{Binding NavigateBackCommand}"
+                                 xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                        <ffimageSvg:SvgCachedImage x:Name="icClose"
+                                                   Source="{x:Static local:AppImages.IcClose}"
+                                                   WidthRequest="32"
+                                                   HeightRequest="32" />
+                    </ContentView>
+
+                    <Label Text="Урок пройден"
+                           FontSize="24"
+                           FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                           Margin="16,0,0,0" />
+
+                </StackLayout>
+
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <StackLayout Padding="16,24,16,40"
+                                 VerticalOptions="FillAndExpand">
+
+                        <Label Text="Поздравляем!"
+                               FontSize="24"
+                               FontFamily="{x:Static local:AppFontFamilies.Bold}" />
+
+                        <Label Text="Несмотря на все сложности, вы успешно завершили задание. Посмотрите на статистику, вы прекрасны! Приходите еще, чтобы улучшить свои разговорные навыки."
+                               Margin="0,8,0,0" />
+
+                        <Frame CornerRadius="16"
+                               BorderColor="{x:Static local:AppColors.Green}"
+                               Padding="16"
+                               Margin="0,24,0,0">
+                            <StackLayout Spacing="16">
+
+                                <Label Text="Вы заработали"
+                                       FontSize="24"
+                                       FontFamily="{x:Static local:AppFontFamilies.Bold}" />
+
+                                <StackLayout Orientation="Horizontal"
+                                             Spacing="8">
+
+                                    <ffimageSvg:SvgCachedImage Source="{x:Static local:AppImages.IcCoin}"
+                                                               WidthRequest="32"
+                                                               HeightRequest="32" />
+
+                                    <Label Text="+50"
+                                           FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                                           VerticalOptions="Center" />
+
+                                    <Label Text="x2"
+                                           FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                                           TextColor="{x:Static local:AppColors.Yellow}"
+                                           VerticalOptions="Center" />
+
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame CornerRadius="16"
+                               BorderColor="{x:Static local:AppColors.Green}"
+                               Padding="16"
+                               Margin="0,16,0,0">
+                            <StackLayout>
+
+                                <Label Text="Статистика"
+                                       FontSize="24"
+                                       FontFamily="{x:Static local:AppFontFamilies.Bold}" />
+
+                                <Label Text="180 слов минуту"
+                                       FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
+                                       Margin="0,16,0,0" />
+
+                                <Label Text="Средняя скорость речи" />
+
+
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame CornerRadius="12"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="EndAndExpand"
+                               Margin="0,24,0,0">
+
+                            <ContentView xameff:Commands.Tap="{Binding NavigateBackCommand}"
+                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}"
+                                         BackgroundColor="{x:Static local:AppColors.Yellow}">
+
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="Center"
+                                             BackgroundColor="Transparent"
+                                             Padding="0,8"
+                                             Spacing="8">
+
+                                    <Label Text="Пройти другие уроки"
+                                           FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+
+                                    <ffimageSvg:SvgCachedImage Source="{x:Static local:AppImages.IcBook}"
+                                                               HeightRequest="32"
+                                                               WidthRequest="32" />
+
+                                </StackLayout>
+
+                            </ContentView>
+
+                        </Frame>
+
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+        </viewcontrols:BaseLayout.Content>
+    </viewcontrols:BaseLayout>
+</ntcviewcontrols:BasePage>

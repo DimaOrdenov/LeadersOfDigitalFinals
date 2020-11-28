@@ -135,6 +135,7 @@ namespace LodFinals.Containers
             pageFactory.Configure<RatingPage, RatingViewModel>(() => Container.Resolve<RatingViewModel>());
             pageFactory.Configure<ExerciseDetailsPage, ExerciseDetailsViewModel>(() => Container.Resolve<ExerciseDetailsViewModel>());
             pageFactory.Configure<TaskOnePage, TaskBaseViewModel>(() => Container.Resolve<TaskBaseViewModel>());
+            pageFactory.Configure<TaskCompletionPage, TaskCompletionViewModel>(() => Container.Resolve<TaskCompletionViewModel>());
         }
     }
 }
