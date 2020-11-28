@@ -1,5 +1,6 @@
 using AutoMapper;
 using LodFinals.Api.Models;
+using LodFinals.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace LodFinals.Api
         {
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSingleton<SpeechService>();
 
             services.AddControllers();
             services.AddSwaggerGen();
