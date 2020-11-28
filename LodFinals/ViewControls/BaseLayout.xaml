@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="LodFinals.ViewControls.BaseLayout"
+                xmlns:local="clr-namespace:LodFinals">
+
+    <ContentView x:Name="content"
+                 AbsoluteLayout.LayoutFlags="All"
+                 AbsoluteLayout.LayoutBounds="0,0,1,1"
+                 VerticalOptions="FillAndExpand" />
+
+    <ActivityIndicator AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                       Color="{x:Static local:AppColors.Main}"
+                       IsVisible="{Binding IsLoading}"
+                       IsRunning="{Binding IsLoading}" />
+
+</AbsoluteLayout>

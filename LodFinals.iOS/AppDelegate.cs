@@ -38,6 +38,8 @@ namespace LodFinals.iOS
 
             PanCardView.iOS.CardsViewRenderer.Preserve();
 
+            MediaManager.CrossMediaManager.Current.Init();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

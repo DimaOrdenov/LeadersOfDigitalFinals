@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,6 +20,7 @@ namespace LodFinals.ViewModels
     public class MainPViewModel : PageViewModel
     {
         private readonly IGoogleCloudTranslationLogic _googleCloudTranslationLogic;
+        private readonly IGoogleCloudTextToSpeechLogic _googleCloudTextToSpeechLogic;
         private readonly IPlatformSpeechToTextService _platformSpeechToTextService;
 
         private string _translatedText;
@@ -28,16 +30,22 @@ namespace LodFinals.ViewModels
 
         public ICommand RecordCommand { get; }
 
+        public ICommand ReadCommand { get; }
+
         public MainPViewModel(
             INavigationService navigationService,
             IDialogService dialogService,
             IDebuggerService debuggerService,
             IExceptionHandler exceptionHandler,
             IGoogleCloudTranslationLogic googleCloudTranslationLogic,
-            IPlatformSpeechToTextService platformSpeechToTextService)
+            IGoogleCloudTextToSpeechLogic googleCloudTextToSpeechLogic,
+            IPlatformSpeechToTextService platformSpeechToTextService,
+            IPlatformAudioPlayerService platformAudioPlayerService,
+            IPlatformFileManagerService platformFileManagerService)
             : base(navigationService, dialogService, debuggerService, exceptionHandler)
         {
             _googleCloudTranslationLogic = googleCloudTranslationLogic;
+            _googleCloudTextToSpeechLogic = googleCloudTextToSpeechLogic;
             _platformSpeechToTextService = platformSpeechToTextService;
 
             TranslateTextCommand = BuildPageVmCommand<string>(
@@ -82,6 +90,28 @@ namespace LodFinals.ViewModels
 
                         _isRecording = true;
                     }
+                });
+
+            ReadCommand = BuildPageVmCommand<string>(
+                async textToRead =>
+                {
+                    if (!(await CrossPermissionsExtension.CheckAndRequestPermissionIfNeeded(new Permissions.BasePermission[]
+                        {
+                            new Permissions.StorageRead(),
+                            new Permissions.StorageRead(),
+                        })).All(x => x.Value == PermissionStatus.Granted))
+                    {
+                        DialogService.ShowPlatformShortAlert("Нужен доступ к файловой системе");
+                        return;
+                    }
+
+                    State = PageStateType.MinorLoading;
+
+                    using FileStream stream = await _googleCloudTextToSpeechLogic.TextToSpeechAsync(textToRead, CancellationToken);
+
+                    await platformAudioPlayerService.Play(Path.Combine(platformFileManagerService.DownloadDirectory, "sample.mp3"));
+
+                    State = PageStateType.Default;
                 });
 
             _platformSpeechToTextService.SpeechRecognitionFinished += (sender, result) => TranslatedText = result;

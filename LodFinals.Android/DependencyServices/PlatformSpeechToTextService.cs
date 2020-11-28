@@ -45,9 +45,9 @@ namespace LodFinals.Droid.DependencyServices
 
         public void StopSpeechToText()
         {
-            _speechRecognizer.Cancel();
-            _speechRecognizer.StopListening();
-            _speechRecognizer.Destroy();
+            _speechRecognizer?.Cancel();
+            _speechRecognizer?.StopListening();
+            _speechRecognizer?.Destroy();
         }
 
         public void OnBeginningOfSpeech()
@@ -68,7 +68,8 @@ namespace LodFinals.Droid.DependencyServices
         public void OnError([GeneratedEnum] SpeechRecognizerError error)
         {
             _debuggerService.Log($"Android native error: {error}");
-            _speechRecognizer?.Destroy();
+
+            StopSpeechToText();
         }
 
         public void OnEvent(int eventType, Bundle @params)

@@ -46,9 +46,13 @@ namespace LodFinals.Droid
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            IDebuggerService debuggerService = new DebuggerService();
+
             IocInitializer.Init(
                 new PlatformAlertMessageService(),
-                new PlatformSpeechToTextService(new DebuggerService()));
+                new PlatformSpeechToTextService(debuggerService),
+                new PlatformAudioPlayerService(debuggerService),
+                new PlatformFileManagerService());
 
             // Init nugets
             XamEffects.Droid.Effects.Init();
