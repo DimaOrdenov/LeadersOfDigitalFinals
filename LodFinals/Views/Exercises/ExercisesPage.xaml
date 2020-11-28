@@ -17,7 +17,7 @@
                     <On Platform="Android"
                         Value="0,0,16,0" />
                     <On Platform="iOS"
-                        Value="16,0" />
+                        Value="0" />
                 </OnPlatform>
             </StackLayout.Padding>
 
@@ -26,7 +26,6 @@
                                        HeightRequest="32" />
 
             <Label Text="Британский"
-                   TextColor="{x:Static local:AppColors.Navy}"
                    FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
                    Margin="8,0,0,0"
                    VerticalOptions="Center"
@@ -37,7 +36,6 @@
                                        HeightRequest="32" />
 
             <Label Text="451"
-                   TextColor="{x:Static local:AppColors.Navy}"
                    FontFamily="{x:Static local:AppFontFamilies.Bold}"
                    VerticalOptions="Center"
                    Margin="8,0,0,0" />

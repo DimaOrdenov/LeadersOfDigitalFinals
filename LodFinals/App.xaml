@@ -8,6 +8,12 @@
     <Application.Resources>
         <ResourceDictionary>
 
+            <Style TargetType="ContentPage"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor"
+                        Value="{x:Static local:AppColors.Main}" />
+            </Style>
+
             <Style TargetType="Frame"
                    ApplyToDerivedTypes="True">
                 <Setter Property="IsClippedToBounds"

@@ -19,6 +19,22 @@ namespace LodFinals
 
         public static SvgImageSource IcStar => SvgImageSource.FromFile("ic_star.svg");
 
+        public static SvgImageSource IcBook => SvgImageSource.FromFile("ic_book.svg");
+
+        public static SvgImageSource IcMute => SvgImageSource.FromFile("ic_mute.svg");
+
+        public static SvgImageSource IcSetting => SvgImageSource.FromFile("ic_setting.svg");
+
+        public static SvgImageSource IcSound => SvgImageSource.FromFile("ic_sound.svg");
+
+        public static SvgImageSource IcCheck => SvgImageSource.FromFile("ic_check.svg");
+
+        public static SvgImageSource IcClose => SvgImageSource.FromFile("ic_close.svg");
+
+        public static SvgImageSource IcCaretRight => SvgImageSource.FromFile("ic_caret_right.svg");
+
+        public static SvgImageSource IcUser => SvgImageSource.FromFile("ic_user.svg");
+
         public static ImageSource ImageBooking => ImageSource.FromFile("image_booking.png");
 
         public static ImageSource ImageCareer => ImageSource.FromFile("image_career.png");

@@ -21,7 +21,7 @@ namespace LodFinals
         {
             INavigationService navigationService = IocInitializer.Container.Resolve<INavigationService>();
 
-            navigationService.SetRootPage<ExercisesPage>();
+            navigationService.SetRootTabbedPage<MainTabbedPage>(0);
         }
 
         protected override void OnSleep()

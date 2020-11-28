@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ntcviewcontrols:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="LodFinals.Views.Profile.ProfilePage"
+                          xmlns:local="clr-namespace:LodFinals"
+                          xmlns:viewcontrols="clr-namespace:LodFinals.ViewControls"
+                          xmlns:ntcviewcontrols="clr-namespace:NoTryCatch.Xamarin.Portable.ViewControls;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ffimageSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                          xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="CenterAndExpand">
+
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android"
+                        Value="0,0,16,0" />
+                    <On Platform="iOS"
+                        Value="0" />
+                </OnPlatform>
+            </StackLayout.Padding>
+
+            <Label Text="Ваш профиль"
+                   FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                   FontSize="24"
+                   HorizontalOptions="FillAndExpand" />
+
+            <ContentView xameff:Commands.Tap="{Binding SettingsCommand}"
+                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                <ffimageSvg:SvgCachedImage x:Name="icSettings"
+                                           Source="{x:Static local:AppImages.IcSetting}"
+                                           HeightRequest="32"
+                                           WidthRequest="32" />
+            </ContentView>
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <viewcontrols:BaseLayout>
+        <viewcontrols:BaseLayout.Content>
+            <ScrollView>
+
+                <StackLayout Padding="16,24,16,40">
+
+                    <Grid ColumnSpacing="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame CornerRadius="30"
+                               WidthRequest="60"
+                               HeightRequest="60"
+                               BackgroundColor="{x:Static local:AppColors.Orange}" />
+
+                        <Label Grid.Column="1"
+                               Text="Константинопольский Константин"
+                               FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                               VerticalOptions="Center" />
+
+                    </Grid>
+
+                    <Grid Margin="-16,16,-16,0"
+                          Padding="16,8"
+                          RowSpacing="8"
+                          xameff:Commands.Tap="{Binding ChooseAccentCommand}"
+                          xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="16" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Акцент произносимых фраз" />
+
+                        <StackLayout Grid.Row="1"
+                                     Orientation="Horizontal">
+
+                            <ffimageSvg:SvgCachedImage Source="{x:Static local:AppImages.IcFlagUk}"
+                                                       WidthRequest="32"
+                                                       HeightRequest="32" />
+
+                            <Label Text="Британский"
+                                   FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
+                                   Margin="8,0,0,0"
+                                   VerticalOptions="Center" />
+
+                        </StackLayout>
+
+                        <ffimageSvg:SvgCachedImage Grid.Column="1"
+                                                   Grid.RowSpan="2"
+                                                   x:Name="icChooseAccent"
+                                                   Source="{x:Static local:AppImages.IcCaretRight}"
+                                                   WidthRequest="16"
+                                                   HeightRequest="16" />
+
+                    </Grid>
+
+                    <Label Text="Ваш баланс"
+                           Margin="0,40,0,0" />
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="0,10,0,0">
+
+                        <ffimageSvg:SvgCachedImage Source="{x:Static local:AppImages.IcCoin}"
+                                                   WidthRequest="32"
+                                                   HeightRequest="32" />
+
+                        <Label Text="451"
+                               FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                               VerticalOptions="Center"
+                               Margin="8,0,0,0" />
+
+                    </StackLayout>
+
+                    <Label Text="Статистика"
+                           FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                           FontSize="24"
+                           Margin="0,32,0,0" />
+
+                    <Grid Margin="0,32,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout>
+
+                            <Label Text="12"
+                                   FontFamily="{x:Static local:AppFontFamilies.Bold}" />
+
+                            <Label Text="Уроков"
+                                   FontSize="14" />
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1">
+
+                            <Label Text="120 слов в минуту"
+                                   FontFamily="{x:Static local:AppFontFamilies.Bold}" />
+
+                            <Label Text="Средняя скорость речи"
+                                   FontSize="14" />
+
+                        </StackLayout>
+
+                    </Grid>
+
+                    <Grid Margin="0,16,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout>
+
+                            <Label Text="12"
+                                   FontFamily="{x:Static local:AppFontFamilies.Bold}" />
+
+                            <Label Text="Начатых диалогов"
+                                   FontSize="14" />
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1">
+
+                            <Label Text="7"
+                                   FontFamily="{x:Static local:AppFontFamilies.Bold}" />
+
+                            <Label Text="Завершенных диалогов"
+                                   FontSize="14" />
+
+                        </StackLayout>
+
+                    </Grid>
+
+                </StackLayout>
+
+            </ScrollView>
+        </viewcontrols:BaseLayout.Content>
+    </viewcontrols:BaseLayout>
+</ntcviewcontrols:BasePage>

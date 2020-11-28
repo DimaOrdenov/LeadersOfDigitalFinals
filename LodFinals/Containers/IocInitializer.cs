@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Autofac;
 using Google.Apis.Services;
@@ -9,8 +10,10 @@ using LodFinals.Helpers;
 using LodFinals.Services;
 using LodFinals.ViewModels;
 using LodFinals.ViewModels.Exercises;
+using LodFinals.ViewModels.Profile;
 using LodFinals.Views;
 using LodFinals.Views.Exercises;
+using LodFinals.Views.Profile;
 using NoTryCatch.BL.Core;
 using NoTryCatch.BL.Core.Exceptions;
 using NoTryCatch.Core.Services;
@@ -18,6 +21,7 @@ using NoTryCatch.Xamarin.Portable.Services;
 using NoTryCatch.Xamarin.Portable.Services.PlatformServices;
 using NoTryCatch.Xamarin.Portable.ViewModels;
 using RestSharp;
+using Xamarin.Forms;
 
 namespace LodFinals.Containers
 {
@@ -80,8 +84,27 @@ namespace LodFinals.Containers
             IPageFactory pageFactory = Container.Resolve<IPageFactory>();
 
             // Pages
+            pageFactory.Configure<MainTabbedPage, MainTabbedPViewModel>(
+                () => Container.Resolve<MainTabbedPViewModel>(),
+                new List<Type>
+                {
+                    typeof(ExercisesPage),
+                    typeof(ProfilePage),
+                },
+                new List<string>
+                {
+                    "Задания",
+                    "Профиль",
+                },
+                new List<FileImageSource>
+                {
+                    AppImages.IcBook.ImageSource as FileImageSource,
+                    AppImages.IcUser.ImageSource as FileImageSource,
+                });
+
             pageFactory.Configure<MainPage, MainPViewModel>(() => Container.Resolve<MainPViewModel>());
             pageFactory.Configure<ExercisesPage, ExercisesViewModel>(() => Container.Resolve<ExercisesViewModel>());
+            pageFactory.Configure<ProfilePage, ProfileViewModel>(() => Container.Resolve<ProfileViewModel>());
         }
     }
 }
