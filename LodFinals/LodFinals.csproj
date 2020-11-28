@@ -55,15 +55,15 @@
     <SharedImage Include="Resources\ic_flag_uk.svg" Resize="False" />
     <SharedImage Include="Resources\ic_mic_muted.svg" Resize="False" />
     <SharedImage Include="Resources\ic_mic.svg" Resize="False" />
-    <SharedImage Include="Resources\ic_star.svg" Resize="False" />
     <SharedImage Include="Resources\ic_user.svg" Resize="False" />
     <SharedImage Include="Resources\ic_book.svg" Resize="False" />
     <SharedImage Include="Resources\ic_mute.svg" Resize="False" />
-    <SharedImage Include="Resources\ic_setting.svg" Resize="False" />
+    <SharedImage Include="Resources\icon_setting.svg" Resize="False" />
     <SharedImage Include="Resources\ic_sound.svg" Resize="False" />
     <SharedImage Include="Resources\ic_check.svg" Resize="False" />
     <SharedImage Include="Resources\ic_close.svg" Resize="False" />
     <SharedImage Include="Resources\ic_caret_right.svg" Resize="False" />
+    <SharedImage Include="Resources\icon_star.svg" Resize="False" />
 
     <SharedImage Include="Resources\ic_user.png" BaseSize="24" />
     <SharedImage Include="Resources\ic_star.png" BaseSize="24" />
