@@ -40,7 +40,8 @@
 
                 <Label Text="{Binding ButtonText, Source={x:Reference this}}"
                        FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
-                       TextColor="White" />
+                       TextColor="White"
+                       VerticalOptions="Center" />
 
                 <ffimageSvg:SvgCachedImage Source="{x:Static local:AppImages.IcMic}"
                                            HeightRequest="32"

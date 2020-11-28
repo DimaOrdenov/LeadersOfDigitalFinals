@@ -36,7 +36,7 @@ namespace LodFinals.iOS.DependencyServices
         {
             if (_audioEngine.Running)
             {
-                StopRecordingAndRecognition();
+                StopRecordingAndRecognition(false);
             }
 
             StartRecordingAndRecognizing();
@@ -52,9 +52,6 @@ namespace LodFinals.iOS.DependencyServices
 
         private void StartRecordingAndRecognizing()
         {
-            _recognitionTask?.Cancel();
-            _recognitionTask = null;
-
             _aVAudioSession = AVAudioSession.SharedInstance();
             NSError nsError;
 
@@ -103,16 +100,21 @@ namespace LodFinals.iOS.DependencyServices
 
                         ErrorOccured?.Invoke(this, error.LocalizedDescription);
 
+                        StopRecordingAndRecognition(false);
+
                         return;
                     }
                 });
         }
 
-        private void StopRecordingAndRecognition()
+        private void StopRecordingAndRecognition(bool invokeFinishEvent = true)
         {
-            Finished?.Invoke(this, _recognizedString);
+            if (invokeFinishEvent)
+            {
+                Finished?.Invoke(this, _recognizedString);
+            }
 
-            _recognitionRequest.EndAudio();
+            _recognitionRequest?.EndAudio();
             _recognitionRequest = null;
 
             _audioEngine.Stop();
@@ -121,7 +123,7 @@ namespace LodFinals.iOS.DependencyServices
             _recognitionTask?.Cancel();
             _recognitionTask = null;
 
-            _aVAudioSession.SetActive(false);
+            _aVAudioSession?.SetActive(false);
             _aVAudioSession = null;
         }
     }
