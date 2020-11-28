@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Amazon;
+using Amazon.Comprehend;
 using Amazon.Lex;
 using Autofac;
 using FFImageLoading.Svg.Forms;
@@ -52,6 +53,9 @@ namespace LodFinals.Containers
 
             var lexClient = new AmazonLexClient(Secrets.LexKeyId, Secrets.LexAccessKey, region: RegionEndpoint.EUCentral1);
             builder.RegisterInstance(lexClient).SingleInstance();
+
+            var lexComprehendClient = new AmazonComprehendClient(Secrets.LexKeyId, Secrets.LexAccessKey, region: RegionEndpoint.EUCentral1);
+            builder.RegisterInstance(lexComprehendClient).SingleInstance();
 
             builder.RegisterInstance(platformAlertMessageServiceImplementation).As<IPlatformAlertMessageService>().SingleInstance();
             builder.RegisterInstance(platformSpeechToTextService).As<IPlatformSpeechToTextService>().SingleInstance();
