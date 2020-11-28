@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ntcviewcontrols:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="LodFinals.Views.Exercises.ExercisesPage"
+                          xmlns:local="clr-namespace:LodFinals"
+                          xmlns:self="clr-namespace:LodFinals.Views.Exercises"
+                          xmlns:viewcontrols="clr-namespace:LodFinals.ViewControls"
+                          xmlns:ntcviewcontrols="clr-namespace:NoTryCatch.Xamarin.Portable.ViewControls;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ffimageSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="CenterAndExpand">
+
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android"
+                        Value="0,0,16,0" />
+                    <On Platform="iOS"
+                        Value="16,0" />
+                </OnPlatform>
+            </StackLayout.Padding>
+
+            <ffimageSvg:SvgCachedImage Source="{x:Static local:AppImages.IcFlagUk}"
+                                       WidthRequest="32"
+                                       HeightRequest="32" />
+
+            <Label Text="Британский"
+                   TextColor="{x:Static local:AppColors.Navy}"
+                   FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
+                   Margin="8,0,0,0"
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand" />
+
+            <ffimageSvg:SvgCachedImage Source="{x:Static local:AppImages.IcCoin}"
+                                       WidthRequest="32"
+                                       HeightRequest="32" />
+
+            <Label Text="451"
+                   TextColor="{x:Static local:AppColors.Navy}"
+                   FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                   VerticalOptions="Center"
+                   Margin="8,0,0,0" />
+
+            <Frame CornerRadius="16"
+                   WidthRequest="32"
+                   HeightRequest="32"
+                   Margin="24,0,0,0"
+                   BackgroundColor="{x:Static local:AppColors.Orange}" />
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <viewcontrols:BaseLayout>
+        <viewcontrols:BaseLayout.Content>
+            <ScrollView>
+                <StackLayout Padding="16,24,16,40"
+                             BackgroundColor="{x:Static local:AppColors.Main}">
+
+                    <Label Text="Упражнения"
+                           FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                           FontSize="48" />
+
+                    <Label Text="Упражнения на все случаи жизни, начните изучать уже сейчас!"
+                           Margin="0,8,0,0" />
+
+                    <StackLayout Margin="0,24,0,0"
+                                 BindableLayout.ItemsSource="{Binding ExercisesCollection}"
+                                 Spacing="16">
+
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <self:ExerciseItemView />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+        </viewcontrols:BaseLayout.Content>
+    </viewcontrols:BaseLayout>
+</ntcviewcontrols:BasePage>

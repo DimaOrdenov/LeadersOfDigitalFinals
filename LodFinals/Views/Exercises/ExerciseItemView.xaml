@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LodFinals.Views.Exercises.ExerciseItemView"
+             xmlns:local="clr-namespace:LodFinals"
+             xmlns:ffimageSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects">
+
+    <Frame CornerRadius="16"
+           BackgroundColor="{Binding BackgroundColor}">
+
+        <Grid xameff:Commands.Tap="{Binding TapCommand}"
+              xameff:Commands.TapParameter="{Binding .}"
+              xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="185" />
+            </Grid.RowDefinitions>
+
+            <ffimageSvg:SvgCachedImage Source="{Binding Image}"
+                                       HeightRequest="185"
+                                       WidthRequest="185"
+                                       HorizontalOptions="EndAndExpand" />
+
+            <StackLayout Padding="16,24">
+
+                <Label Text="{Binding Title}"
+                       FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                       FontSize="20"
+                       TextColor="White" />
+
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,4,0,0">
+
+                    <Label Text="Уровень:"
+                           FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
+                           FontSize="16"
+                           TextColor="White" />
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding StarsCollection}"
+                                 Orientation="Horizontal"
+                                 Margin="8,0,0,0"
+                                 Spacing="4">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <ffimageSvg:SvgCachedImage Source="{Binding Image}"
+                                                           WidthRequest="12"
+                                                           HeightRequest="12" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+
+                </StackLayout>
+
+                <Label FontSize="14"
+                       TextColor="White"
+                       FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
+                       VerticalOptions="EndAndExpand">
+
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Урок: " />
+                            <Span Text="{Binding CurrentLesson}" />
+                            <Span Text="/" />
+                            <Span Text="{Binding TotalLessons}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+
+                </Label>
+
+            </StackLayout>
+
+        </Grid>
+
+    </Frame>
+
+</ContentView>

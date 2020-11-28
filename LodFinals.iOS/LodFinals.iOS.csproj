@@ -152,4 +152,9 @@
   <ItemGroup>
     <Folder Include="DependencyServices\" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Nunito-Bold.ttf" />
+    <BundleResource Include="Resources\Nunito-SemiBold.ttf" />
+    <BundleResource Include="Resources\Nunito-Regular.ttf" />
+  </ItemGroup>
 </Project>

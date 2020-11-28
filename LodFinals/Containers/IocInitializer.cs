@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Reflection;
 using Autofac;
+using Google.Apis.Services;
 using Google.Cloud.Translation.V2;
 using LodFinals.BusinessLayer;
 using LodFinals.DependencyServices;
 using LodFinals.Helpers;
 using LodFinals.Services;
 using LodFinals.ViewModels;
+using LodFinals.ViewModels.Exercises;
 using LodFinals.Views;
+using LodFinals.Views.Exercises;
 using NoTryCatch.BL.Core;
 using NoTryCatch.BL.Core.Exceptions;
 using NoTryCatch.Core.Services;
@@ -78,6 +81,7 @@ namespace LodFinals.Containers
 
             // Pages
             pageFactory.Configure<MainPage, MainPViewModel>(() => Container.Resolve<MainPViewModel>());
+            pageFactory.Configure<ExercisesPage, ExercisesViewModel>(() => Container.Resolve<ExercisesViewModel>());
         }
     }
 }

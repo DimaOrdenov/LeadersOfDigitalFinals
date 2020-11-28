@@ -2,6 +2,7 @@
 using Autofac;
 using LodFinals.Containers;
 using LodFinals.Views;
+using LodFinals.Views.Exercises;
 using NoTryCatch.Xamarin.Portable.Services;
 using Xamarin.Forms;
 
@@ -20,7 +21,7 @@ namespace LodFinals
         {
             INavigationService navigationService = IocInitializer.Container.Resolve<INavigationService>();
 
-            navigationService.SetRootPage<MainPage>();
+            navigationService.SetRootPage<ExercisesPage>();
         }
 
         protected override void OnSleep()

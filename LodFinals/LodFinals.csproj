@@ -43,5 +43,25 @@
     <Folder Include="ViewControls\" />
     <Folder Include="Definitions\" />
     <Folder Include="Definitions\Responses\" />
+    <Folder Include="ViewModels\Exercises\" />
+    <Folder Include="Views\Exercises\" />
+    <Folder Include="Resources\" />
+    <Folder Include="ViewModels\Common\" />
+    <Folder Include="ViewModels\Profile\" />
+    <Folder Include="Views\Profile\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SharedImage Include="Resources\ic_arrow_left.svg" Resize="False" />
+    <SharedImage Include="Resources\ic_arrow_right.svg" Resize="False" />
+    <SharedImage Include="Resources\ic_coin.svg" Resize="False" />
+    <SharedImage Include="Resources\ic_flag_uk.svg" Resize="False" />
+    <SharedImage Include="Resources\ic_mic_muted.svg" Resize="False" />
+    <SharedImage Include="Resources\ic_mic.svg" Resize="False" />
+    <SharedImage Include="Resources\ic_star.svg" Resize="False" />
+
+    <SharedImage Include="Resources\image_booking.png" Resize="False" />
+    <SharedImage Include="Resources\image_career.png" Resize="False" />
+    <SharedImage Include="Resources\image_travel.png" Resize="False" />
   </ItemGroup>
 </Project>
