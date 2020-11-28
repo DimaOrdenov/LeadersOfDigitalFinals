@@ -27,7 +27,9 @@ namespace LodFinals.iOS
 
             IocInitializer.Init(
                 new PlatformAlertMessageService(),
-                new PlatformSpeechToTextService(new DebuggerService()));
+                new PlatformSpeechToTextService(new DebuggerService()),
+                new PlatformAudioPlayerService(),
+                new PlatformFileManagerService());
 
             // Init nugets
             XamEffects.iOS.Effects.Init();

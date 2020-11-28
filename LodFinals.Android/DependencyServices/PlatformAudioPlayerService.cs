@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Android.Media;
-using Android.Net;
 using LodFinals.DependencyServices;
 using NoTryCatch.Core.Services;
 using Plugin.CurrentActivity;
