@@ -7,9 +7,9 @@ using Android.OS;
 namespace LodFinals.Droid
 {
     [Activity(
-        Label = "LodFinals",
-        Icon = "@mipmap/icon",
-        RoundIcon = "@mipmap/icon",
+        Label = "spAIk",
+        Icon = "@mipmap/ic_launcher",
+        RoundIcon = "@mipmap/ic_launcher_round",
         Theme = "@style/Theme.Splash",
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize,
