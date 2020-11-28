@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LodFinals.Views.Chat.SentMessageView"
+             xmlns:local="clr-namespace:LodFinals"
+             xmlns:viewcontrols="clr-namespace:LodFinals.ViewControls"
+             xmlns:ntcviewcontrols="clr-namespace:NoTryCatch.Xamarin.Portable.ViewControls;assembly=NoTryCatch.Xamarin.Portable"
+             xmlns:ffimageSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+
+    <Frame CornerRadius="8"
+           BackgroundColor="{x:Static local:AppColors.Cream}"
+           Padding="8,4"
+           HorizontalOptions="End">
+        <Label Text="{Binding Message}" />
+    </Frame>
+
+</ContentView>

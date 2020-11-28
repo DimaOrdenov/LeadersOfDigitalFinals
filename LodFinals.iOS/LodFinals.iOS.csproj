@@ -156,5 +156,7 @@
     <BundleResource Include="Resources\Nunito-Bold.ttf" />
     <BundleResource Include="Resources\Nunito-SemiBold.ttf" />
     <BundleResource Include="Resources\Nunito-Regular.ttf" />
+    <BundleResource Include="Resources\gif_recording_white.gif" />
+    <BundleResource Include="Resources\gif_recording_gray.gif" />
   </ItemGroup>
 </Project>

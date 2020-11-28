@@ -46,6 +46,11 @@
     <Folder Include="Views\Profile\" />
     <Folder Include="Definitions\Enums\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Views\Chat\" />
+    <Folder Include="ViewModels\Chat\" />
+    <Folder Include="ViewModels\Rating\" />
+    <Folder Include="Views\Rating\" />
+    <Folder Include="Views\Common\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,7 +59,7 @@
     <SharedImage Include="Resources\ic_coin.svg" Resize="False" />
     <SharedImage Include="Resources\ic_flag_uk.svg" Resize="False" />
     <SharedImage Include="Resources\ic_mic_muted.svg" Resize="False" />
-    <SharedImage Include="Resources\ic_mic.svg" Resize="False" />
+    <SharedImage Include="Resources\icon_mic.svg" Resize="False" />
     <SharedImage Include="Resources\ic_user.svg" Resize="False" />
     <SharedImage Include="Resources\ic_book.svg" Resize="False" />
     <SharedImage Include="Resources\ic_mute.svg" Resize="False" />
@@ -64,6 +69,7 @@
     <SharedImage Include="Resources\ic_close.svg" Resize="False" />
     <SharedImage Include="Resources\ic_caret_right.svg" Resize="False" />
     <SharedImage Include="Resources\icon_star.svg" Resize="False" />
+    <SharedImage Include="Resources\icon_chat.svg" Resize="False" />
 
     <SharedImage Include="Resources\ic_user.png" BaseSize="24" />
     <SharedImage Include="Resources\ic_star.png" BaseSize="24" />

@@ -14,9 +14,11 @@ namespace LodFinals
 
         public static Color Turqouise => Color.FromHex("#00B7B7");
 
-        public static Color PaleGray => Color.FromHex("#F3F3F3");
+        public static Color PaleGray => Color.FromHex("#F5F5F5");
 
         public static Color Green => Color.FromHex("#00AC4D");
+
+        public static Color Cream => Color.FromHex("#FFE7A8");
 
         public static Color RippleEffectWhite => Color.FromHex("#52FFFFFF");
 

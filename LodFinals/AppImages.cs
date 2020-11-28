@@ -15,7 +15,7 @@ namespace LodFinals
 
         public static SvgImageSource IcMicMuted => SvgImageSource.FromFile("ic_mic_muted.svg");
 
-        public static SvgImageSource IcMic => SvgImageSource.FromFile("ic_mic.svg");
+        public static SvgImageSource IcMic => SvgImageSource.FromFile("icon_mic.svg");
 
         public static SvgImageSource IcStar => SvgImageSource.FromFile("icon_star.svg");
 
@@ -35,6 +35,8 @@ namespace LodFinals
 
         public static SvgImageSource IcUser => SvgImageSource.FromFile("ic_user.svg");
 
+        public static SvgImageSource IcChat => SvgImageSource.FromFile("icon_chat.svg");
+
         public static ImageSource IcBookPng => ImageSource.FromFile("ic_book.png");
 
         public static ImageSource IcChatPng => ImageSource.FromFile("ic_chat.png");
@@ -48,5 +50,9 @@ namespace LodFinals
         public static ImageSource ImageCareer => ImageSource.FromFile("image_career.png");
 
         public static ImageSource ImageTravel => ImageSource.FromFile("image_travel.png");
+
+        public static ImageSource GifRecordingWhite => ImageSource.FromFile("gif_recording_white.gif");
+
+        public static ImageSource GifRecordingGray => ImageSource.FromFile("gif_recording_gray.gif");
     }
 }

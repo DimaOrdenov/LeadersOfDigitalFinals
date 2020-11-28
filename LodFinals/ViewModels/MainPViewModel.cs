@@ -118,7 +118,7 @@ namespace LodFinals.ViewModels
                     State = PageStateType.Default;
                 });
 
-            _platformSpeechToTextService.SpeechRecognitionFinished += (sender, result) => TranslatedText = result;
+            _platformSpeechToTextService.Finished += (sender, result) => TranslatedText = result;
         }
 
         public string TranslatedText

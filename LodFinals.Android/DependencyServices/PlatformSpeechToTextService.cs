@@ -20,7 +20,11 @@ namespace LodFinals.Droid.DependencyServices
             _debuggerService = debuggerService;
         }
 
-        public event EventHandler<string> SpeechRecognitionFinished;
+        public event EventHandler<string> ErrorOccured;
+
+        public event EventHandler<string> PartialResultsReceived;
+
+        public event EventHandler<string> Finished;
 
         public void StartSpeechToText()
         {
@@ -70,6 +74,8 @@ namespace LodFinals.Droid.DependencyServices
             _debuggerService.Log($"Android native error: {error}");
 
             StopSpeechToText();
+
+            ErrorOccured?.Invoke(this, error.ToString());
         }
 
         public void OnEvent(int eventType, Bundle @params)
@@ -85,7 +91,7 @@ namespace LodFinals.Droid.DependencyServices
             {
                 string textInput = matches[0];
 
-                SpeechRecognitionFinished?.Invoke(this, textInput);
+                PartialResultsReceived?.Invoke(this, textInput);
             }
         }
 
@@ -102,7 +108,7 @@ namespace LodFinals.Droid.DependencyServices
             {
                 string textInput = matches[0];
 
-                SpeechRecognitionFinished?.Invoke(this, textInput);
+                Finished?.Invoke(this, textInput);
             }
 
             StopSpeechToText();

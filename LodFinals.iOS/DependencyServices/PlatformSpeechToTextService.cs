@@ -18,7 +18,11 @@ namespace LodFinals.iOS.DependencyServices
         private AVAudioSession _aVAudioSession;
         private string _recognizedString;
 
-        public event EventHandler<string> SpeechRecognitionFinished;
+        public event EventHandler<string> ErrorOccured;
+
+        public event EventHandler<string> PartialResultsReceived;
+
+        public event EventHandler<string> Finished;
 
         public PlatformSpeechToTextService(IDebuggerService debuggerService)
         {
@@ -90,12 +94,14 @@ namespace LodFinals.iOS.DependencyServices
                     {
                         _recognizedString = result.BestTranscription.FormattedString;
 
-                        SpeechRecognitionFinished?.Invoke(this, _recognizedString);
+                        PartialResultsReceived?.Invoke(this, _recognizedString);
                     }
 
                     if (error != null)
                     {
                         _debuggerService.Log(error.LocalizedDescription);
+
+                        ErrorOccured?.Invoke(this, error.LocalizedDescription);
 
                         return;
                     }
@@ -104,7 +110,7 @@ namespace LodFinals.iOS.DependencyServices
 
         private void StopRecordingAndRecognition()
         {
-            SpeechRecognitionFinished?.Invoke(this, _recognizedString);
+            Finished?.Invoke(this, _recognizedString);
 
             _recognitionRequest.EndAudio();
             _recognitionRequest = null;

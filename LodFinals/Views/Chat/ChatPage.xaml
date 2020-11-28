@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ntcviewcontrols:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="LodFinals.Views.Chat.ChatPage"
+                          xmlns:local="clr-namespace:LodFinals"
+                          xmlns:self="clr-namespace:LodFinals.Views.Chat"
+                          xmlns:viewcontrols="clr-namespace:LodFinals.ViewControls"
+                          xmlns:commonViews="clr-namespace:LodFinals.Views.Common"
+                          xmlns:ntcviewcontrols="clr-namespace:NoTryCatch.Xamarin.Portable.ViewControls;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ntcConverters="clr-namespace:NoTryCatch.Xamarin.Portable.Converters;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ffimageSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                          xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="CenterAndExpand">
+
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android"
+                        Value="0,0,16,0" />
+                    <On Platform="iOS"
+                        Value="0" />
+                </OnPlatform>
+            </StackLayout.Padding>
+
+            <Label Text="Чат"
+                   FontSize="24"
+                   FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                   VerticalOptions="Center" />
+
+            <ffimageSvg:SvgCachedImage x:Name="icChat"
+                                       Source="{x:Static local:AppImages.IcChat}"
+                                       WidthRequest="32"
+                                       HeightRequest="32"
+                                       Margin="24,0,0,0" />
+
+            <Label Text="текст"
+                   FontSize="18"
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="4,0,0,0" />
+
+            <ffimageSvg:SvgCachedImage Source="{x:Static local:AppImages.IcFlagUk}"
+                                       WidthRequest="32"
+                                       HeightRequest="32" />
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <viewcontrols:BaseLayout>
+        <viewcontrols:BaseLayout.Content>
+            <StackLayout Padding="16,12,16,40"
+                         VerticalOptions="FillAndExpand">
+
+                <ScrollView x:Name="messagesScrollLayout"
+                            VerticalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="End">
+
+                        <Label Text="{Binding TodayText, TargetNullValue=''}"
+                               FontSize="14"
+                               FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="End" />
+
+                        <StackLayout x:Name="messagesLayout"
+                                     BindableLayout.ItemsSource="{Binding MessagesCollection}"
+                                     Margin="0,48,0,0"
+                                     Spacing="16"
+                                     VerticalOptions="End">
+
+                            <BindableLayout.ItemTemplateSelector>
+                                <self:ChatItemTemplateSelector />
+                            </BindableLayout.ItemTemplateSelector>
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+
+                <commonViews:RecordButton ButtonCommand="{Binding RecordCommand}"
+                                          IsRecording="{Binding IsRecording, Mode=TwoWay}" />
+
+            </StackLayout>
+        </viewcontrols:BaseLayout.Content>
+    </viewcontrols:BaseLayout>
+
+</ntcviewcontrols:BasePage>

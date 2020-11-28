@@ -40,6 +40,8 @@
                    ApplyToDerivedTypes="True">
                 <Setter Property="Spacing"
                         Value="0" />
+                <Setter Property="BackgroundColor"
+                        Value="{x:Static local:AppColors.Main}" />
             </Style>
 
             <Style TargetType="Label"

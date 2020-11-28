@@ -13,11 +13,15 @@ using LodFinals.DependencyServices;
 using LodFinals.Helpers;
 using LodFinals.Services;
 using LodFinals.ViewModels;
+using LodFinals.ViewModels.Chat;
 using LodFinals.ViewModels.Exercises;
 using LodFinals.ViewModels.Profile;
+using LodFinals.ViewModels.Rating;
 using LodFinals.Views;
+using LodFinals.Views.Chat;
 using LodFinals.Views.Exercises;
 using LodFinals.Views.Profile;
+using LodFinals.Views.Rating;
 using NoTryCatch.BL.Core;
 using NoTryCatch.BL.Core.Exceptions;
 using NoTryCatch.Core.Services;
@@ -63,6 +67,8 @@ namespace LodFinals.Containers
 
             // BL
             builder.RegisterInstance<IRestClient>(new RestClient(Secrets.ApiUrl));
+            builder.RegisterType<SpeechLogic>().As<ISpeechLogic>().SingleInstance();
+
             builder.RegisterInstance(TranslationClient.CreateFromApiKey(Secrets.GoogleApiCloudKey));
 
             IRestClient googleTextToSpeechClient = new RestClient("https://texttospeech.googleapis.com/v1/text:synthesize");
@@ -87,8 +93,8 @@ namespace LodFinals.Containers
                         return;
                     }
 
-                    pageVm.ExceptionHandler.AddExceptionTypeHandler<BusinessLogicException>((ex, action) => Container.Resolve<DialogService>().DisplayAlert("Ошибка", ex.Message, "Ок"));
-                    pageVm.ExceptionHandler.AddExceptionTypeHandler<Exception>((ex, action) => Container.Resolve<DialogService>().DisplayAlert("Ошибка", ex.Message, "Ок"));
+                    pageVm.ExceptionHandler.AddExceptionTypeHandler<BusinessLogicException>((ex, action) => e.Context.Resolve<IDialogService>().DisplayAlert("Ошибка", ex.Message, "Ок"));
+                    pageVm.ExceptionHandler.AddExceptionTypeHandler<Exception>((ex, action) => e.Context.Resolve<IDialogService>().DisplayAlert("Ошибка", ex.Message, "Ок"));
                 })
                 .AsSelf();
 
@@ -101,16 +107,22 @@ namespace LodFinals.Containers
                 () => Container.Resolve<MainTabbedPViewModel>(),
                 new List<Type>
                 {
+                    typeof(ChatPage),
+                    typeof(RatingPage),
                     typeof(ExercisesPage),
                     typeof(ProfilePage),
                 },
                 new List<string>
                 {
+                    "Чат",
+                    "Рейтинг",
                     "Задания",
                     "Профиль",
                 },
                 new List<FileImageSource>
                 {
+                    AppImages.IcChatPng as FileImageSource,
+                    AppImages.IcStarPng as FileImageSource,
                     AppImages.IcBookPng as FileImageSource,
                     AppImages.IcUserPng as FileImageSource,
                 });
@@ -119,6 +131,8 @@ namespace LodFinals.Containers
             pageFactory.Configure<ExercisesPage, ExercisesViewModel>(() => Container.Resolve<ExercisesViewModel>());
             pageFactory.Configure<ProfilePage, ProfileViewModel>(() => Container.Resolve<ProfileViewModel>());
             pageFactory.Configure<AccentSettingPage, AccentSettingViewModel>(() => Container.Resolve<AccentSettingViewModel>());
+            pageFactory.Configure<ChatPage, ChatViewModel>(() => Container.Resolve<ChatViewModel>());
+            pageFactory.Configure<RatingPage, RatingViewModel>(() => Container.Resolve<RatingViewModel>());
         }
     }
 }
