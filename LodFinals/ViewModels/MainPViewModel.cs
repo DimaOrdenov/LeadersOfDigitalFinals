@@ -113,7 +113,7 @@ namespace LodFinals.ViewModels
                         Path.Combine(platformFileManagerService.DownloadDirectory, "sample.mp3"),
                         Convert.FromBase64String(googleResponse.AudioContent));
 
-                    await platformAudioPlayerService.Play(Path.Combine(platformFileManagerService.DownloadDirectory, "sample.mp3"));
+                    await platformAudioPlayerService.PlayAsync(Path.Combine(platformFileManagerService.DownloadDirectory, "sample.mp3"));
 
                     State = PageStateType.Default;
                 });

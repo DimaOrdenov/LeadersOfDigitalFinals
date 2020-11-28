@@ -72,6 +72,7 @@
     <Compile Include="DependencyServices\PlatformSpeechToTextService.cs" />
     <Compile Include="DependencyServices\PlatformFileManagerService.cs" />
     <Compile Include="DependencyServices\PlatformAudioPlayerService.cs" />
+    <Compile Include="CustomRenderer\BaseProgressBarRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DependencyServices\" />
+    <Folder Include="CustomRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Nunito-Bold.ttf" />

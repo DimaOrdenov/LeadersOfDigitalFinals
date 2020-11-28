@@ -3,7 +3,9 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using LodFinals.BusinessLayer;
 using LodFinals.ViewModels.Common;
+using LodFinals.Views.Exercises;
 using NoTryCatch.Core.Services;
+using NoTryCatch.Xamarin.Portable.Definitions.Enums;
 using NoTryCatch.Xamarin.Portable.Services;
 
 namespace LodFinals.ViewModels.Exercises
@@ -22,6 +24,16 @@ namespace LodFinals.ViewModels.Exercises
                 ExtendedUserContext userContext)
                 : base(navigationService, dialogService, debuggerService, exceptionHandler, userContext)
         {
+            _exerciseItemTapCommand = BuildPageVmCommand(
+                async () =>
+                {
+                    State = PageStateType.MinorLoading;
+
+                    await NavigationService.NavigateAsync<ExerciseDetailsPage>();
+
+                    State = PageStateType.Default;
+                });
+
             ExercisesCollection = new ObservableCollection<ExerciseItemViewModel>
             {
                 new ExerciseItemViewModel

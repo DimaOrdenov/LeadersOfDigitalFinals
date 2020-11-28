@@ -7,7 +7,7 @@ using Plugin.CurrentActivity;
 
 namespace LodFinals.Droid.DependencyServices
 {
-    public class PlatformAudioPlayerService : IPlatformAudioPlayerService
+    public class PlatformAudioPlayerService : Java.Lang.Object, IPlatformAudioPlayerService, MediaPlayer.IOnCompletionListener
     {
         private readonly IDebuggerService _debuggerService;
         private readonly MediaPlayer _mediaPlayer;
@@ -18,7 +18,9 @@ namespace LodFinals.Droid.DependencyServices
             _mediaPlayer = new MediaPlayer();
         }
 
-        public async Task Play(string filePath)
+        public event EventHandler Finished;
+
+        public async Task PlayAsync(string filePath)
         {
             try
             {
@@ -46,11 +48,26 @@ namespace LodFinals.Droid.DependencyServices
                 await _mediaPlayer.SetDataSourceAsync(CrossCurrentActivity.Current.Activity.ApplicationContext, fileUri);
                 _mediaPlayer.Prepare();
                 _mediaPlayer.Start();
+
+                _mediaPlayer.SetOnCompletionListener(this);
             }
             catch (Exception ex)
             {
                 _debuggerService.Log(ex);
             }
+        }
+
+        public void Stop()
+        {
+            if (_mediaPlayer.IsPlaying)
+            {
+                _mediaPlayer.Stop();
+            }
+        }
+
+        public void OnCompletion(MediaPlayer mp)
+        {
+            Finished?.Invoke(this, EventArgs.Empty);
         }
     }
 }

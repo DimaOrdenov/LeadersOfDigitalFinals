@@ -74,6 +74,7 @@
     <Compile Include="DependencyServices\PlatformAlertMessageService.cs" />
     <Compile Include="DependencyServices\PlatformAudioPlayerService.cs" />
     <Compile Include="DependencyServices\PlatformFileManagerService.cs" />
+    <Compile Include="CustomRenderers\BaseProgressBarRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -118,6 +119,7 @@
     <Folder Include="Resources\drawable\" />
     <Folder Include="DependencyServices\" />
     <Folder Include="Resources\xml\" />
+    <Folder Include="CustomRenderers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LodFinals\LodFinals.csproj">

@@ -17,10 +17,10 @@
                 <RowDefinition Height="185" />
             </Grid.RowDefinitions>
 
-            <ffimageSvg:SvgCachedImage Source="{Binding Image}"
-                                       HeightRequest="185"
-                                       WidthRequest="185"
-                                       HorizontalOptions="EndAndExpand" />
+            <Image Source="{Binding Image}"
+                   HeightRequest="185"
+                   WidthRequest="185"
+                   HorizontalOptions="EndAndExpand" />
 
             <StackLayout Padding="16,24">
 

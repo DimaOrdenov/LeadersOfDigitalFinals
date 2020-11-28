@@ -64,7 +64,13 @@
                 <Setter Property="TextColor"
                         Value="White" />
                 <Setter Property="BackgroundColor"
-                        Value="{x:Static local:AppColors.Main}" />
+                        Value="{x:Static local:AppColors.Yellow}" />
+                <Setter Property="FontFamily"
+                        Value="{x:Static local:AppFontFamilies.SemiBold}" />
+                <Setter Property="FontSize"
+                        Value="18" />
+                <Setter Property="CornerRadius"
+                        Value="12" />
             </Style>
 
             <Style TargetType="ffimage:CachedImage"

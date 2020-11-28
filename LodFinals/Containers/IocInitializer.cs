@@ -133,6 +133,8 @@ namespace LodFinals.Containers
             pageFactory.Configure<AccentSettingPage, AccentSettingViewModel>(() => Container.Resolve<AccentSettingViewModel>());
             pageFactory.Configure<ChatPage, ChatViewModel>(() => Container.Resolve<ChatViewModel>());
             pageFactory.Configure<RatingPage, RatingViewModel>(() => Container.Resolve<RatingViewModel>());
+            pageFactory.Configure<ExerciseDetailsPage, ExerciseDetailsViewModel>(() => Container.Resolve<ExerciseDetailsViewModel>());
+            pageFactory.Configure<TaskOnePage, TaskBaseViewModel>(() => Container.Resolve<TaskBaseViewModel>());
         }
     }
 }

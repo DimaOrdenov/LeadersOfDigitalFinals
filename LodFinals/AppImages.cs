@@ -51,6 +51,14 @@ namespace LodFinals
 
         public static ImageSource ImageTravel => ImageSource.FromFile("image_travel.png");
 
+        public static ImageSource ImageTaskOne => ImageSource.FromFile("image_task_1.png");
+
+        public static ImageSource ImageTaskTwo => ImageSource.FromFile("image_task_two.png");
+
+        public static ImageSource ImageTaskThree => ImageSource.FromFile("image_task_three.png");
+
+        public static ImageSource ImageTaskFour => ImageSource.FromFile("image_task_four.png");
+
         public static ImageSource GifRecordingWhite => ImageSource.FromFile("gif_recording_white.gif");
 
         public static ImageSource GifRecordingGray => ImageSource.FromFile("gif_recording_gray.gif");

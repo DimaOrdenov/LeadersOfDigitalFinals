@@ -14,7 +14,9 @@ namespace LodFinals.iOS.DependencyServices
         {
         }
 
-        public Task Play(string filePath)
+        public event EventHandler Finished;
+
+        public Task PlayAsync(string filePath)
         {
             if (_player != null)
             {
@@ -28,7 +30,19 @@ namespace LodFinals.iOS.DependencyServices
             _player.PrepareToPlay();
             _player.Play();
 
+            _player.FinishedPlaying += (sender, e) => Finished?.Invoke(this, EventArgs.Empty);
+
             return Task.FromResult(true);
+        }
+
+        public void Stop()
+        {
+            if (_player != null)
+            {
+                _player.Stop();
+                _player.Dispose();
+                _player = null;
+            }
         }
     }
 }

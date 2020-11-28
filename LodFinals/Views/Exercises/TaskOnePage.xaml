@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ntcviewcontrols:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="LodFinals.Views.Exercises.TaskOnePage"
+                          xmlns:local="clr-namespace:LodFinals"
+                          xmlns:viewcontrols="clr-namespace:LodFinals.ViewControls"
+                          xmlns:commonViews="clr-namespace:LodFinals.Views.Common"
+                          xmlns:ntcviewcontrols="clr-namespace:NoTryCatch.Xamarin.Portable.ViewControls;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ntcConverters="clr-namespace:NoTryCatch.Xamarin.Portable.Converters;assembly=NoTryCatch.Xamarin.Portable"
+                          xmlns:ffimageSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                          xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                          NavigationPage.HasNavigationBar="False">
+
+    <viewcontrols:BaseLayout>
+        <viewcontrols:BaseLayout.Content>
+
+            <StackLayout BackgroundColor="{x:Static local:AppColors.Main}">
+
+                <StackLayout Orientation="Horizontal"
+                             Padding="16,24,16,0"
+                             VerticalOptions="Center">
+
+                    <ContentView xameff:Commands.Tap="{Binding NavigateBackCommand}"
+                                 xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                        <ffimageSvg:SvgCachedImage x:Name="icClose"
+                                                   Source="{x:Static local:AppImages.IcClose}"
+                                                   WidthRequest="32"
+                                                   HeightRequest="32" />
+                    </ContentView>
+
+                    <Frame CornerRadius="8"
+                           Margin="24,0,0,0"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Center">
+                        <ProgressBar HeightRequest="16"
+                                     ProgressColor="{x:Static local:AppColors.Yellow}"
+                                     BackgroundColor="{x:Static local:AppColors.PaleGray}"
+                                     Progress="{Binding TaskProgress}" />
+                    </Frame>
+
+                </StackLayout>
+
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <StackLayout Padding="16,24,16,40"
+                                 VerticalOptions="FillAndExpand">
+
+                        <Grid>
+
+                            <Image Source="{Binding TaskImage}"
+                                   Aspect="AspectFit" />
+
+
+                            <Label Text="{Binding HoverImageText}"
+                                   FontSize="24"
+                                   FontFamily="{x:Static local:AppFontFamilies.SemiBold}"
+                                   TextColor="White"
+                                   VerticalOptions="End"
+                                   Margin="24,0,24,24" />
+
+                        </Grid>
+
+
+                        <Label Text="{Binding TaskHeader}"
+                               FontSize="24"
+                               FontFamily="{x:Static local:AppFontFamilies.Bold}"
+                               Margin="0,16,0,0" />
+
+                        <Label Text="{Binding TaskDescription}"
+                               IsVisible="{Binding IsTaskDescriptionVisible}"
+                               Margin="0,8,0,0" />
+
+                        <Frame CornerRadius="8"
+                               Margin="0,24,0,0"
+                               Padding="8,4"
+                               BackgroundColor="{x:Static local:AppColors.Cream}"
+                               HorizontalOptions="Start"
+                               IsVisible="False">
+
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame"
+                                             Binding="{Binding Answer, Converter={ntcConverters:IsNullConverter}}"
+                                             Value="False">
+                                    <Setter Property="IsVisible"
+                                            Value="True" />
+                                </DataTrigger>
+                            </Frame.Triggers>
+
+                            <Label Text="{Binding Answer}" />
+
+                        </Frame>
+
+                        <Grid RowSpacing="12"
+                              VerticalOptions="EndAndExpand"
+                              Margin="0,24,0,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <commonViews:PlayButton ButtonCommand="{Binding PlayCommand}"
+                                                    IsPlaying="{Binding IsPlaying}"
+                                                    IsVisible="{Binding IsPlayButtonVisible}" />
+
+                            <commonViews:RecordButton Grid.Row="1"
+                                                      ButtonCommand="{Binding RecordCommand}"
+                                                      ButtonText="Нажмите, чтобы ответить"
+                                                      IsRecording="{Binding IsRecording}"
+                                                      IsVisible="{Binding IsRecordButtonVisible}" />
+
+                            <StackLayout Grid.RowSpan="2"
+                                         IsVisible="{Binding IsTaskCompleted}">
+
+                                <Frame CornerRadius="8"
+                                       BackgroundColor="{x:Static local:AppColors.LightGreen}"
+                                       Padding="8,4">
+                                    <StackLayout Orientation="Horizontal">
+
+                                        <ffimageSvg:SvgCachedImage x:Name="icCheck"
+                                                                   Source="{x:Static local:AppImages.IcCheck}"
+                                                                   WidthRequest="32"
+                                                                   HeightRequest="32" />
+
+                                        <Label Text="Успешно! Вы молодец!"
+                                               TextColor="{x:Static local:AppColors.Green}"
+                                               VerticalOptions="Center"
+                                               Margin="12,0,0,0" />
+
+                                    </StackLayout>
+                                </Frame>
+
+                                <Button Text="Далее"
+                                        Command="{Binding NextTaskCommand}"
+                                        BackgroundColor="{x:Static local:AppColors.Green}"
+                                        Margin="0,34,0,0">
+
+                                    <Button.Triggers>
+                                        <DataTrigger TargetType="Button"
+                                                     Binding="{Binding TaskNumber}"
+                                                     Value="4">
+                                            <Setter Property="Text"
+                                                    Value="Завершить" />
+                                        </DataTrigger>
+                                    </Button.Triggers>
+
+                                </Button>
+
+                            </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+        </viewcontrols:BaseLayout.Content>
+    </viewcontrols:BaseLayout>
+
+</ntcviewcontrols:BasePage>

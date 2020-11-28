@@ -70,17 +70,6 @@ namespace LodFinals.ViewModels.Chat
                     }
                     else
                     {
-                        if (!(await CrossPermissionsExtension.CheckAndRequestPermissionIfNeeded(new Permissions.BasePermission[]
-                            {
-                                new Permissions.Microphone(),
-                                new Permissions.Speech(),
-                            })).All(x => x.Value == PermissionStatus.Granted))
-                        {
-                            DialogService.ShowPlatformShortAlert("Нужны разрешения на использование микрофона и записи речи");
-
-                            return;
-                        }
-
                         await ExceptionHandler.PerformCatchableTask(
                             new ViewModelPerformableAction(
                                  () =>
@@ -96,13 +85,6 @@ namespace LodFinals.ViewModels.Chat
 
             _messagesCollection = new ObservableCollection<ChatItemViewModel>();
             _messagesCollection.CollectionChanged += MessagesCollectionChanged;
-        }
-
-        private void MessagesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            _messagesCollection.CollectionChanged -= MessagesCollectionChanged;
-
-            TodayText = $"Сегодня, {DateTime.Now:HH:mm}";
         }
 
         public bool IsRecording
@@ -152,6 +134,13 @@ namespace LodFinals.ViewModels.Chat
             return base.OnDisappearing();
         }
 
+        private void MessagesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            _messagesCollection.CollectionChanged -= MessagesCollectionChanged;
+
+            TodayText = $"Сегодня, {DateTime.Now:HH:mm}";
+        }
+
         private async void ServiceSpeechRecognitionFinished(object sender, string e)
         {
             MessagesCollection.Add(new ChatItemViewModel(e, true));
@@ -170,7 +159,7 @@ namespace LodFinals.ViewModels.Chat
                                 Path.Combine(_platformFileManagerService.DownloadDirectory, "sample.mp3"),
                                 Convert.FromBase64String(await _speechLogic.ConvertTextToSpeechAsync(response, _userContext.SettingAccent, CancellationToken)));
 
-                            await _platformAudioPlayerService.Play(Path.Combine(_platformFileManagerService.DownloadDirectory, "sample.mp3"));
+                            await _platformAudioPlayerService.PlayAsync(Path.Combine(_platformFileManagerService.DownloadDirectory, "sample.mp3"));
                         }
                         finally
                         {

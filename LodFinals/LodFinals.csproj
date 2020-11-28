@@ -79,5 +79,9 @@
     <SharedImage Include="Resources\image_booking.png" Resize="False" />
     <SharedImage Include="Resources\image_career.png" Resize="False" />
     <SharedImage Include="Resources\image_travel.png" Resize="False" />
+    <SharedImage Include="Resources\image_task_1.png" Resize="False" />
+    <SharedImage Include="Resources\image_task_two.png" Resize="False" />
+    <SharedImage Include="Resources\image_task_three.png" Resize="False" />
+    <SharedImage Include="Resources\image_task_four.png" Resize="False" />
   </ItemGroup>
 </Project>

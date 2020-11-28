@@ -2,18 +2,22 @@
 using NoTryCatch.Xamarin.Portable.Extensions;
 using NoTryCatch.Xamarin.Portable.ViewControls;
 
-namespace LodFinals.Views.Profile
+namespace LodFinals.Views.Exercises
 {
-    public partial class AccentSettingPage : BasePage
+    public partial class TaskOnePage : BasePage
     {
-        public AccentSettingPage()
+        public TaskOnePage()
         {
             InitializeComponent();
 
             SvgImageSource closeIcon = AppImages.IcClose;
             closeIcon.SetTintColor(AppColors.Navy);
 
+            SvgImageSource checkIcon = AppImages.IcCheck;
+            checkIcon.SetTintColor(AppColors.Green);
+
             icClose.Source = closeIcon;
+            icCheck.Source = checkIcon;
         }
 
         protected override void OnAppearing()
@@ -21,6 +25,7 @@ namespace LodFinals.Views.Profile
             base.OnAppearing();
 
             icClose.SetTintColor(AppColors.Navy);
+            icCheck.SetTintColor(AppColors.Green);
         }
     }
 }
