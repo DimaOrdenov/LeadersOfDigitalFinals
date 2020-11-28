@@ -62,6 +62,11 @@
     <SharedImage Include="Resources\ic_close.svg" Resize="False" />
     <SharedImage Include="Resources\ic_caret_right.svg" Resize="False" />
 
+    <SharedImage Include="Resources\ic_user.png" BaseSize="24" />
+    <SharedImage Include="Resources\ic_star.png" BaseSize="24" />
+    <SharedImage Include="Resources\ic_book.png" BaseSize="24" />
+    <SharedImage Include="Resources\ic_chat.png" BaseSize="24" />
+
     <SharedImage Include="Resources\image_booking.png" Resize="False" />
     <SharedImage Include="Resources\image_career.png" Resize="False" />
     <SharedImage Include="Resources\image_travel.png" Resize="False" />

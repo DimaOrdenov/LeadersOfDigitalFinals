@@ -35,6 +35,14 @@ namespace LodFinals
 
         public static SvgImageSource IcUser => SvgImageSource.FromFile("ic_user.svg");
 
+        public static ImageSource IcBookPng => ImageSource.FromFile("ic_book.png");
+
+        public static ImageSource IcChatPng => ImageSource.FromFile("ic_chat.png");
+
+        public static ImageSource IcUserPng => ImageSource.FromFile("ic_user.png");
+
+        public static ImageSource IcStarPng => ImageSource.FromFile("ic_star.png");
+
         public static ImageSource ImageBooking => ImageSource.FromFile("image_booking.png");
 
         public static ImageSource ImageCareer => ImageSource.FromFile("image_career.png");

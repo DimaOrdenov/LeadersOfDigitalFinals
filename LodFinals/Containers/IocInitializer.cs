@@ -4,6 +4,7 @@ using System.Reflection;
 using Amazon;
 using Amazon.Lex;
 using Autofac;
+using FFImageLoading.Svg.Forms;
 using Google.Apis.Services;
 using Google.Cloud.Translation.V2;
 using LodFinals.BusinessLayer;
@@ -49,7 +50,7 @@ namespace LodFinals.Containers
             builder.RegisterType<SpeechToTextService>().As<ISpeechToTextService>().SingleInstance();
             builder.RegisterType<LexService>().As<ILexService>().SingleInstance();
 
-            var lexClient = new AmazonLexClient(Secrets.LexKeyId,Secrets.LexAccessKey,region:RegionEndpoint.EUCentral1);
+            var lexClient = new AmazonLexClient(Secrets.LexKeyId, Secrets.LexAccessKey, region: RegionEndpoint.EUCentral1);
             builder.RegisterInstance(lexClient).SingleInstance();
 
             builder.RegisterInstance(platformAlertMessageServiceImplementation).As<IPlatformAlertMessageService>().SingleInstance();
@@ -104,8 +105,8 @@ namespace LodFinals.Containers
                 },
                 new List<FileImageSource>
                 {
-                    AppImages.IcBook.ImageSource as FileImageSource,
-                    AppImages.IcUser.ImageSource as FileImageSource,
+                    AppImages.IcBookPng as FileImageSource,
+                    AppImages.IcUserPng as FileImageSource,
                 });
 
             pageFactory.Configure<MainPage, MainPViewModel>(() => Container.Resolve<MainPViewModel>());
