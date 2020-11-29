@@ -14,52 +14,50 @@
     <viewcontrols:BaseLayout>
         <viewcontrols:BaseLayout.Content>
             <ScrollView VerticalOptions="FillAndExpand">
-                <StackLayout VerticalOptions="FillAndExpand"
-                             Padding="16,116,16,40"
-                             BackgroundColor="{x:Static local:AppColors.Main}">
 
-                    <Grid VerticalOptions="FillAndExpand">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                <Grid VerticalOptions="FillAndExpand"
+                      BackgroundColor="{x:Static local:AppColors.Main}"
+                      Padding="16,116,16,40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                        <StackLayout>
+                    <StackLayout>
 
-                            <Label Text="{Binding Header}"
-                                   FontSize="48"
-                                   FontFamily="{x:Static local:AppFontFamilies.Bold}" />
+                        <Label Text="{Binding Header}"
+                               FontSize="48"
+                               FontFamily="{x:Static local:AppFontFamilies.Bold}" />
 
-                            <Label Text="{Binding Description}"
-                                   Margin="0,16,0,0" />
+                        <Label Text="{Binding Description}"
+                               Margin="0,16,0,0" />
 
-                            <Frame CornerRadius="16"
-                                   BackgroundColor="{x:Static local:AppColors.PaleGray}"
-                                   VerticalOptions="EndAndExpand"
-                                   Padding="16,8"
-                                   IsVisible="{Binding IsEntryVisible}">
+                        <Frame CornerRadius="16"
+                               BackgroundColor="{x:Static local:AppColors.PaleGray}"
+                               VerticalOptions="EndAndExpand"
+                               Padding="16,8"
+                               IsVisible="{Binding IsEntryVisible}">
 
-                                <Entry Text="{Binding EntryText}"
-                                       TextColor="{x:Static local:AppColors.Navy}"
-                                       Keyboard="{Binding EntryKeyboard}"
-                                       IsPassword="{Binding EntryIsPassword}" />
+                            <Entry Text="{Binding EntryText}"
+                                   TextColor="{x:Static local:AppColors.Navy}"
+                                   Keyboard="{Binding EntryKeyboard}"
+                                   IsPassword="{Binding EntryIsPassword}" />
 
-                            </Frame>
+                        </Frame>
 
-                        </StackLayout>
+                    </StackLayout>
 
-                        <StackLayout Grid.Row="1">
+                    <StackLayout Grid.Row="1">
 
-                            <Button Text="{Binding NextButtonText, Mode=TwoWay}"
-                                    BackgroundColor="{Binding NextButtonBackgroundColor}"
-                                    Command="{Binding NextStepCommand}"
-                                    VerticalOptions="EndAndExpand" />
+                        <Button Text="{Binding NextButtonText, Mode=TwoWay}"
+                                BackgroundColor="{Binding NextButtonBackgroundColor}"
+                                Command="{Binding NextStepCommand}"
+                                VerticalOptions="EndAndExpand" />
 
-                        </StackLayout>
+                    </StackLayout>
 
-                    </Grid>
+                </Grid>
 
-                </StackLayout>
             </ScrollView>
         </viewcontrols:BaseLayout.Content>
     </viewcontrols:BaseLayout>

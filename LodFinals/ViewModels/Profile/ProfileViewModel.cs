@@ -28,6 +28,10 @@ namespace LodFinals.ViewModels.Profile
 
                     State = PageStateType.Default;
                 });
+
+            Name = userContext.Name;
         }
+
+        public string Name { get; }
     }
 }

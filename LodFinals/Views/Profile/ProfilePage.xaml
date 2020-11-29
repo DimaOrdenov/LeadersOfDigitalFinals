@@ -55,7 +55,7 @@
                                BackgroundColor="{x:Static local:AppColors.Orange}" />
 
                         <Label Grid.Column="1"
-                               Text="Константинопольский Константин"
+                               Text="{Binding Name}"
                                FontFamily="{x:Static local:AppFontFamilies.Bold}"
                                VerticalOptions="Center" />
 
